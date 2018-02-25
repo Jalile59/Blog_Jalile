@@ -1,0 +1,65 @@
+{% extends "template.twig" %}
+
+{% block content%}
+
+<div class="row">
+    <div class="col-sm-6 col-lg-offset-3 " style="margin-top: 150px; margin-bottom: 150px;">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2>Instription</h2>
+                        <hr class="star-primary">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form method="POST" action="index.php?action=AddInscription" enctype="multipart/form-data">
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <label for="validationServer01">Nom</label>
+                  <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Nom" name="Name" value="" required>
+                  <div class="valid-feedback">
+                      
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="validationServer01">Prenom</label>
+                  <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Prenom" name="Surename" value="" required>
+                  <div class="valid-feedback">
+
+                  </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                  <label for="validationServer01">Pseudo</label>
+                  <input type="text" class="form-control is-valid" id="validationServer03" placeholder="Pseudo" name="Pseudo" value="" required>
+                  <div class="valid-feedback">
+
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="validationServer01">Email</label>
+                  <input type="email" class="form-control is-valid" id="validationServer04" placeholder="Email" name="Mail" value="" required>
+                  <div class="valid-feedback">
+
+                  </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                  <label for="validationServer01">Mot de passe</label>
+                  <input type="text" class="form-control is-valid" id="validationServer03" placeholder="Mot de passe" name="Psw" value="" required>
+                  <div class="valid-feedback">
+
+                  </div>
+                </div>
+            </div>
+          <button style="margin-top: 15px" class="btn btn-primary" type="submit">Valider</button>
+        </form>
+    </div>
+</div>    
+    
+    
+{% endblock %}

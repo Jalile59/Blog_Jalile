@@ -1,0 +1,39 @@
+{% extends "template.twig" %}
+
+{% block content %}
+    
+    <div class="container" style="margin-top: 150px; margin-bottom: 250px;" >
+        <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4" >
+        	<div class="panel panel-default">
+        		<div class="panel-heading"style="background-color: #2C3E50; color: white">
+			    		<h3 class="panel-title">Connection <small></small></h3>
+			 			</div>
+			 			<div class="panel-body" style="background-color: gainsboro">
+			    		<form role="form" method="POST" action="index.php?action=login" >
+
+
+			    			<div class="form-group">
+			    				<input type="email" name="email" id="email" class="form-control input-sm" placeholder="Adresse Mail">
+			    			</div>
+
+			    			<div class="row">
+			    				<div class="col-xs-6 col-sm-6 col-md-6">
+			    					<div class="form-group">
+			    						<input type="password" name="password" id="password" class="form-control input-sm" placeholder="Password">
+			    					</div>
+			    				</div>
+
+			    			</div>
+			    			
+			    			<input type="submit" value="login" class="btn btn-info btn-block">
+			    		
+			    		</form>
+			    	</div>
+	    		</div>
+    		</div>
+    	</div>
+    </div>
+
+
+{% endblock %}

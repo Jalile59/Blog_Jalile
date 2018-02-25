@@ -1,0 +1,19 @@
+
+#commentaire{
+    border: solid 1px;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #BDBDBD;
+    margin: 5px;
+    
+}
+
+#txtcommentaire{
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+}
+
+#Bouton{
+    margin: 5px;
+}
