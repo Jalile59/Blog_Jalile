@@ -69,6 +69,7 @@ if (isset($_GET['action'])){
     }elseif ($_GET['action']=='Inscription') {
         
         callInscription($twig);
+        
     }elseif($_GET['action']=='AddInscription'){
         
 

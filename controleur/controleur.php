@@ -33,13 +33,26 @@ function callHome($twig){
 
 function callInscription($twig){
     
-    echo $twig->render('inscription.twig'); 
+    if($_SESSION['Nom']){
+        
+        echo $twig->render('home.twig');
+    }else
+    
+        echo $twig->render('inscription.twig'); 
 }
 
 function callConnect($twig){
 
+    if($_SESSION['Nom']){
+        
+        echo $twig->render('home.twig');
+        
+    }else{
+        
+        echo $twig->render('connection.twig');
+    }
     
-    echo $twig->render('connection.twig');
+    
 }
 
 ///////////////////////////////////////////////////////////////////////////////
