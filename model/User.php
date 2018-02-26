@@ -11,6 +11,7 @@ class User{
     private $_EmailUser;
     private $_MdpUser;
     private $_PhotoUser;
+    private $_Statut;
 
 
 
@@ -63,6 +64,11 @@ class User{
     public function getPhotoUser(){
         
         return $this->_PhotoUser;
+    }
+    
+    public function getStatut(){
+        
+        return $this->_Statut;
     }
     
 
@@ -119,6 +125,11 @@ class User{
     public function setPhotoUser($PhotoUser){
         
         $this-> _PhotoUser =$PhotoUser;
+    }
+    
+    public function setStatut($Statut){
+        
+        $this->_Statut = $Statut;
     }
     
     

@@ -24,8 +24,9 @@ $twig = new Twig_Environment ($loader, [
 ]);
 
 $twig->addExtension(new Twig_Extension_Debug);
-$session = $_SESSION['Nom'];
-//echo $session;
+
+//die(var_dump($_SESSION));
+
 $twig->addGlobal('session', $_SESSION);
 
 //$container->loadFromExtension('twig', array('global'=>$_SESSION));

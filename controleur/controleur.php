@@ -222,7 +222,10 @@ function addinscription($name, $surename, $pseudo, $mail, $mdp){
   
     $addinscription = new ManagerUser();
     $requete = $addinscription->add($inscription);
-    
+ 
+    header('Location:index.php?action=home');
+
+    exit();
 }
 
 function login($email, $mdp, $twig){

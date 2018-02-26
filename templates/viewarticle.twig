@@ -13,7 +13,7 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <div class="modal-body">
                     {% for data in data %}
-                        <h2 style="text-align: center">{{ data.NameArticle }} {% if session.Id == data.user_iduser %} <a href="index.php?action=ViewModify&Articleid={{ data.idArticle}}"><img src="../public/img/bouton-modifier_318-77528.png"/></a><a href="index.php?action=dropArticle&id={{ data.idArticle}}"><img src="../public/img/supprimer.png"/></h2></a> {% else %}</h2>{% endif %}
+                        <h2 style="text-align: center">{{ data.NameArticle }} {% if session.Id == data.user_iduser or session.Statut == 'Admin' %} <a href="index.php?action=ViewModify&Articleid={{ data.idArticle}}"><img src="../public/img/bouton-modifier_318-77528.png"/></a><a href="index.php?action=dropArticle&id={{ data.idArticle}}"><img src="../public/img/supprimer.png"/></h2></a> {% else %}</h2>{% endif %}
                     <hr class="star-primary">
                     <img src=".{{data.Dirphoto}}" class="img-responsive img-centered" alt="">
                     <p style="text-align: justify">{{data.Content|raw}} </p>
@@ -31,7 +31,7 @@
                             </strong>
                         </li>
                     </ul>
-                            {% if session.Nom %}
+                    {% if session.Nom %}
                     <div id="commentaire">
                         
                         <div class="row">
@@ -50,7 +50,9 @@
                         {% endif %}
                         
                         {% for commentaire in commentaire %}
-                                
+                      
+                            
+                    {% if commentaire.Valide == '1' or session.Statut =='Admin' %}        
                     <div id="commentaires">
                         
                         
@@ -59,7 +61,7 @@
                                 <p>{{commentaire.CreateDate}}</p>
                             </div>
                             <div class="col-lg-6" style="text-align: right">
-                                <a>{{ data.NameArticle }}</a> {% if session.Id == '0' %} <a href="index.php?action=ViewModify&Articleid={{ data.idArticle}}"><img src="../public/img/valider.png"/></a>{% else %}{% endif %}{% if session.Id == data.user_iduser or session.Id == '0' %}<a href="index.php?action=ViewModify&Articleid={{ data.idArticle}}"><img src="../public/img/bouton-modifier_318-77528.png"/></a><a href="index.php?action=dropArticle&id={{ data.idArticle}}"><img src="../public/img/supprimer.png"/></a></a>{% else%} {% endif%}
+                                <a>{{ data.NameArticle }}</a> {% if session.Id == '1' %} <a href="index.php?action=ViewModify&Articleid={{ data.idArticle}}"><img src="../public/img/valider.png"/></a>{% else %}{% endif %}{% if session.Id == data.user_iduser or session.Id == '1' %}<a href="index.php?action=ViewModify&Articleid={{ data.idArticle}}"><img src="../public/img/bouton-modifier_318-77528.png"/></a><a href="index.php?action=dropArticle&id={{ data.idArticle}}"><img src="../public/img/supprimer.png"/></a></a>{% else%} {% endif%}
 
                             </div>
                         </div>
@@ -74,7 +76,8 @@
                             
                         </div>
                     </div>
-                    
+                        {%else %}
+                        {%endif%}
 
                         {% endfor %}
                         {% endfor %}

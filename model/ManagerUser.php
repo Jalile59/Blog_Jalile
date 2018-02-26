@@ -22,7 +22,7 @@ class ManagerUser{
         
         
         
-       $q = $this->_db->prepare('INSERT INTO user(NameUser, SurenameUser, Pseudo, EmailUser, MdpUser, PhotoUser ) VALUES (:NameUser, :SurenameUser, :Pseudo, :EmailUser, :MdpUser, :PhotoUser)');
+       $q = $this->_db->prepare('INSERT INTO user(NameUser, SurenameUser, Pseudo, EmailUser, MdpUser, PhotoUser, Statut ) VALUES (:NameUser, :SurenameUser, :Pseudo, :EmailUser, :MdpUser, :PhotoUser, :Statut)');
         
         
         $q->bindValue(':NameUser', $user->getNameuser());
@@ -31,6 +31,7 @@ class ManagerUser{
         $q->bindValue(':EmailUser', $user->getEmailUser());
         $q->bindValue(':MdpUser', $user->getMdpUser());
         $q->bindValue(':PhotoUser', $user->getPhotoUser());
+        $q->bindValue (':Statut', $user->getStatut());
         
         
         return $q->execute();
@@ -143,6 +144,7 @@ class ManagerUser{
             $_SESSION['Mail']= $datas->getEmailUser();
             $_SESSION['Id'] = $datas->getIduser();
             $_SESSION['Prenom'] = $datas->getSurenameUser();
+            $_SESSION['Statut'] = $datas->getStatut();
             
 
             
