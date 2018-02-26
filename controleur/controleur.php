@@ -60,7 +60,7 @@ function callConnect($twig){
 function AddArticle($NameArticle, $categorie, $Dirphoto, $content){
       
     
-    $user_iduser= 1; // replacer par une variable $sessionId
+    $user_iduser= $_SESSION['Id']; 
     
     // Verificatiuon des champs postés
     
@@ -132,8 +132,17 @@ function viewArticle($twig, $idArticle){
     
     $data=$dataArticle->get($idArticle);
     
-//    die(var_dump($data));
-    echo $twig->render('viewarticle.twig',array(data=>$data));
+    $commentaire = new ManagerCommentaire();
+    
+    $q = $commentaire->getListCommentaireByArticle($idArticle);
+    
+    
+    
+//    die(var_dump($q));
+    
+    echo $twig->render('viewarticle.twig',array(data=>$data,
+                                                commentaire=>$q
+                                               ));
 }
 
 function dropArticle($id){
@@ -153,7 +162,7 @@ function dropArticle($id){
 
 function updateArticle ($NameArticle, $categorie, $Dirphoto, $content, $id){
  
-    $user_iduser= 1; // replacer par une variable $sessionId
+    $user_iduser= $_SESSION['Id']; 
     $date = (date('Y-m-d'));
     
     $data = [
@@ -231,8 +240,8 @@ function login($email, $mdp, $twig){
 
 function addcommentaire($commentaire,$idarticle){
     
-    $date = date('d-m-Y H:M');
-    $user = 1;
+    $date = date('d-m-Y H:m');
+    $user = $_SESSION['Id'];
     
     $data=[
         ContentCommentaire => $commentaire,
@@ -249,7 +258,7 @@ function addcommentaire($commentaire,$idarticle){
     
     $requete->add($commentaires);
     
-    header('Location:index.php?action=ViewModify&Articleid='.$idarticle);
+    header('Location:index.php?action=article');
 
     exit();
     

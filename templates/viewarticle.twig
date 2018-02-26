@@ -47,11 +47,14 @@
                        </div>    
                         {% else %}
                         {% endif %}
+                        
+                        {% for commentaire in commentaire %}
+                         
                     <div id="commentaire">
                         
                         <div class="row">
                             <div class="col-lg-6">
-                                <p>15/02/2018 15:15</p>
+                                <p>{{commentaire.CreateDate}}</p>
                             </div>
                             <div class="col-lg-6" style="text-align: right">
                                 <a>{{ data.NameArticle }}</a> {% if session.Id == '0' %} <a href="index.php?action=ViewModify&Articleid={{ data.idArticle}}"><img src="../public/img/valider.png"/></a>{% else %}{% endif %}{% if session.Id == data.user_iduser or session.Id == '0' %}<a href="index.php?action=ViewModify&Articleid={{ data.idArticle}}"><img src="../public/img/bouton-modifier_318-77528.png"/></a><a href="index.php?action=dropArticle&id={{ data.idArticle}}"><img src="../public/img/supprimer.png"/></a></a>{% else%} {% endif%}
@@ -64,12 +67,14 @@
                                 <img src="../public/img/utilisateur.png"><p> jalile</p>
                             </div>
                             <div id="txtcommentaire" class="col-lg-9">
-                                <p>dzelhhdcbhzeobncpzoeqhbcpobhze zepfzpnczp qzpendcpznpqd</p>
+                                <p>{{commentaire.ContentCommentaire}}</p>
                             </div>
                             
                         </div>
                     </div>
                         {% endfor %}
+                        {% endfor %}
+
                 </div>
             </div>
         </div>

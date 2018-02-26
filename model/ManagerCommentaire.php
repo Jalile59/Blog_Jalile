@@ -66,7 +66,7 @@ class ManagerCommentaire{
         return  $Commentaires;
     }
     
-    public function getListArticle($Article_idArticle){
+    public function getListCommentaireByArticle($Article_idArticle){
         
         $q = $this->_db->query('SELECT * FROM Commentaire WHERE Article_idArticle= '.$Article_idArticle );
         
