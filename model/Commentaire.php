@@ -106,9 +106,7 @@ class Commentaire{
     }
     
     public function setValide($Valide){
-        
-        
-        
+
         $this->_Valide = $Valide;
         
     }

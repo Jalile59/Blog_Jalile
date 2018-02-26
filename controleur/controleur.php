@@ -275,3 +275,18 @@ function destroy($twig){
 
     exit();
 }
+
+function validationCommentaire($twig,$idCommentaire,$idarticle){
+    
+    $requete= new ManagerCommentaire();
+    $requete->validationCommentaire($idCommentaire);
+    
+    header('location: ./index.php?action=viewarticle&idarticle='.$idarticle);
+}
+
+function deleteCommentaire($twig,$idCommentaire){
+    
+    $requete = new ManagerCommentaire();
+    $requete->delete($idcommenatire);
+    
+}

@@ -99,6 +99,19 @@ class ManagerCommentaire{
         
     }
     
+    public function validationCommentaire($idCommentaire){
+        
+    $q = $this->_db->prepare('UPDATE Commentaire SET Valide =:Valide WHERE idCommentaire=:idCommentaire');
+        
+        $value = 1;
+        
+        $q->bindValue(':idCommentaire', $idCommentaire);
+        $q->bindValue(':Valide', $value);
+        
+        return $data = $q->execute();
+        
+    }
+    
     public function setDb (){
         
             $db = new PDO('mysql:host=localhost;dbname=BlogJalile', 'root', '');

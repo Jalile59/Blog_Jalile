@@ -97,6 +97,14 @@ if (isset($_GET['action'])){
         
         $requete= callHome($twig);
         
+    }elseif ($_GET['action']== 'valideCommentaire') {
+        
+       
+        $requete = validationCommentaire($twig, $_GET['idCommentaire'], $_GET['idarticle']);
+        
+    }elseif ($_GET['action']=='suppCommentaire') {
+        
+        $requete = deleteCommentaire($twig, $_GET['idCommentaire'], $_GET['idarticle']);
     }
     
     
