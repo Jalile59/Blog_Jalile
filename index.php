@@ -24,6 +24,9 @@ $twig = new Twig_Environment ($loader, [
 ]);
 
 $twig->addExtension(new Twig_Extension_Debug);
+$session = $_SESSION['Nom'];
+echo $session;
+$twig->addGlobal('session', $_SESSION);
 
 //$container->loadFromExtension('twig', array('global'=>$_SESSION));
 
@@ -74,6 +77,7 @@ if (isset($_GET['action'])){
     }elseif($_GET['action']=='connect'){
         
         callConnect($twig);
+        
     }elseif($_GET['action']=='login'){
         
         login($_POST['email'], $_POST['password'], $twig);

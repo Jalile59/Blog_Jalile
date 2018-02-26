@@ -39,6 +39,7 @@ function callInscription($twig){
 }
 
 function callConnect($twig){
+
     
     echo $twig->render('connection.twig');
 }
@@ -101,6 +102,10 @@ function getListArticle($twig){
     $data= $listeArticle->getListArticle();
         
 //    var_dump($data);
+    
+ 
+    
+//    die(var_dump($data));
     
     echo   $twig->render ('article.twig',array(data =>$data));
 
@@ -172,8 +177,6 @@ function viewModifyArticle($twig,$id){
         'session' => $_SESSION    
     );
     
-    var_dump($data);
-    die;
     
     
     echo $twig->render('modifyArticle.twig',array(data=>$data));    
@@ -208,13 +211,13 @@ function login($email, $mdp, $twig){
     
     $q=$requete->checklogin($email, $mdp);
     
-    echo $q;
     if($q ==1){
         
-//        var_dump($_SESSION);die;
-    echo $twig->render('template.twig',array('SESSION' => $_SESSION));
-    
-    echo $twig->render('home.twig');
+        $data = array(
+        'data' => $_SESSION    
+    );
+//    die(var_dump($data));
+    echo $twig->render('home.twig',array('data'=>$data));
     }
     
 }
