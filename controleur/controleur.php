@@ -24,12 +24,10 @@ function callArticle(){
     
 }
 
-function callHome(){
+function callHome($twig){
     
-    $view = new View();
-    
-    
-    echo $view->setView('home.twig');
+
+    echo $twig->render('home.twig');
     
 }
 
@@ -211,16 +209,12 @@ function login($email, $mdp, $twig){
     
     $q=$requete->checklogin($email, $mdp);
     
-    if($q ==1){
-        
-        $data = array(
-        'data' => $_SESSION    
-    );
-//    die(var_dump($data));
-    echo $twig->render('home.twig',array('data'=>$data));
+    header('Location:index.php?action=home');
+
+    exit();
     }
     
-}
+
 
 function addcommentaire($commentaire,$idarticle){
     
@@ -242,8 +236,17 @@ function addcommentaire($commentaire,$idarticle){
     
     $requete->add($commentaires);
     
-        header('Location:index.php?action=ViewModify&Articleid='.$idarticle);
+    header('Location:index.php?action=ViewModify&Articleid='.$idarticle);
 
+    exit();
     
+}
+
+function destroy($twig){
     
+    session_destroy();
+    
+    header('Location:index.php?action=home');
+
+    exit();
 }

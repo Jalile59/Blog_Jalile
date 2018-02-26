@@ -64,7 +64,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="#page-top">Bienvenue sur le blog  {{ session.Nom}}</a>
+                <a class="navbar-brand" href="index.php?action=home">Bienvenue sur le blog  {{ session.Prenom}}</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -83,19 +83,22 @@
                     </li>
                     {%if  session.Nom%}
                     {% else %}
+
+                    {% endif %}
+                    {%if  session.Nom%}
+                    <li class="page-scroll">
+                        <a href="index.php?action=ViewAddarticle">New Article</a>
+                    </li>  
+                    <li class="page-scroll">
+                        <a href="index.php?action=destroy"><img src="../public/img/exit.png"></a>
+                    </li> 
+                {% else %}
                     <li class="page-scroll">
                         <a href="index.php?action=Inscription">Inscription</a>
                     </li>
                     <li class="page-scroll">
                         <a href="index.php?action=connect">Connection</a>
                     </li>
-                    {% endif %}
-                    <a>{%if  session.Nom%}</a>
-                       <li class="page-scroll">
-                        <a href="index.php?action=ViewAddarticle">New Article</a>
-                    </li>  
-
-                {% else %}
                 {% endif %}
                 </ul>
             </div>

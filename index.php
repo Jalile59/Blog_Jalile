@@ -25,7 +25,7 @@ $twig = new Twig_Environment ($loader, [
 
 $twig->addExtension(new Twig_Extension_Debug);
 $session = $_SESSION['Nom'];
-echo $session;
+//echo $session;
 $twig->addGlobal('session', $_SESSION);
 
 //$container->loadFromExtension('twig', array('global'=>$_SESSION));
@@ -87,6 +87,14 @@ if (isset($_GET['action'])){
         
 //        die($_POST['commentaire']);
         $requete = addcommentaire($_POST['commentaire'], $_GET['idarticle']);
+        
+    }elseif ($_GET['action']=='destroy') {
+        
+        $requete = destroy($twig);
+    }elseif ($_GET['action']=='home') {
+        
+        $requete= callHome($twig);
+        
     }
     
     
