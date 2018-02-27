@@ -104,7 +104,7 @@ if (isset($_GET['action'])){
         
     }elseif ($_GET['action']=='suppCommentaire') {
         
-        $requete = deleteCommentaire($twig, $_GET['idCommentaire'], $_GET['idarticle']);
+        $requete = deleteCommentaire($twig, $_GET['idCommentaire'], $_GET['idarticle'], $_GET['idarticle']);
     }
     
     

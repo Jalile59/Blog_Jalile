@@ -153,6 +153,8 @@ function dropArticle($id){
     if ($requete){
         
         header('Location: index.php?action=article');
+        
+        exit();
     }else{
         
         echo 'erreur lors de la suppression de l article';
@@ -284,9 +286,11 @@ function validationCommentaire($twig,$idCommentaire,$idarticle){
     header('location: ./index.php?action=viewarticle&idarticle='.$idarticle);
 }
 
-function deleteCommentaire($twig,$idCommentaire){
+function deleteCommentaire($twig,$idCommentaire, $idarticle ){
     
-    $requete = new ManagerCommentaire();
-    $requete->delete($idcommenatire);
     
+    $drop = new ManagerCommentaire();
+    $requete = $drop->delete($idCommentaire);
+    
+    header('location: ./index.php?action=viewarticle&idarticle='.$idarticle);
 }

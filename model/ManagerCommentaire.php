@@ -36,11 +36,12 @@ class ManagerCommentaire{
         
     }
     
-    public function delete($commenatire){
+    public function delete($idCommentaire){
         
         // drop row
-
-        $q = $this -> _db -> prepare ('DELETE FROM Commentaire WHERE idArticle ='. $commenatire);
+//        die($idCommentaire);
+        
+        $q = $this -> _db -> prepare ('DELETE FROM Commentaire WHERE idCommentaire ='. $idCommentaire);
         
         $data = $q->execute();
         
