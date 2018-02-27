@@ -43,20 +43,26 @@ class ManagerUser{
         
         // drop row
 
-        $q = $this -> _db -> prepare ('DELETE FROM user WHERE idArticle ='. $article);
+        $q = $this -> _db -> prepare ('DELETE FROM user WHERE user =user');
+        
+        $q->bindValue(':user', $user);
         
         $data = $q->execute();
         
         return $data;
     }
     
-    public function get($id){
+    public function get($user){
         
         // recupére row
         
-        $id = (int) $id;
+        $user = (int) $user;
         
-        $q = $this -> _db ->query('SELECT * FROM user WHERE idArticle ='.$id);
+        $q = $this -> _db ->prepare('SELECT * FROM user WHERE user =:user');
+        
+        $q->bindValue(':user', $user);
+        
+        $data = $q->execute();
         
         $data = $q -> fetch (PDO::FETCH_ASSOC);
         
@@ -70,9 +76,14 @@ class ManagerUser{
         return  $user;
     }
     
-    public function getRowbyMail ($mail){
+    public function getRowbyMail ($EmailUser){
         
-        $q = $this -> _db ->query('SELECT * FROM user WHERE EmailUser ="'.$mail.'"');
+        $q = $this -> _db ->prepare('SELECT * FROM user WHERE EmailUser =:EmailUser');
+        
+        $q->bindValue(':EmailUser', $EmailUser);
+        
+        $data = $q->execute();
+        
         
         $data = $q -> fetch (PDO::FETCH_ASSOC);
         
@@ -126,18 +137,23 @@ class ManagerUser{
         $this->_db =$db;
     }
     
-    public function checklogin($email, $mdp){
+    public function checklogin($EmailUser, $MdpUser){
         
-        $q = $this->_db->query('SELECT * FROM user WHERE EmailUser ="'.$email.'" AND MdpUser ="'.$mdp.'"');
+        $q = $this->_db->prepare('SELECT * FROM user WHERE EmailUser =:EmailUser AND MdpUser =:MdpUser');
             //$sql_login2 = ('SELECT * FROM user WHERE Nom="'.$Login.'" AND Mdp="'.$PASS.'"');
+        
+        $q->bindValue(':EmailUser', $EmailUser);
+        $q->bindValue(':MdpUser', $MdpUser);
 
+         $q->execute();
         
         $data = $q->rowCount();
         
+
         if ($data >0){
             
             $userObj = new ManagerUser();
-            $datas= $userObj->getRowbyMail($email);
+            $datas= $userObj->getRowbyMail($EmailUser);
             
             
             $_SESSION['Nom']= $datas->getNameuser();
@@ -146,10 +162,9 @@ class ManagerUser{
             $_SESSION['Prenom'] = $datas->getSurenameUser();
             $_SESSION['Statut'] = $datas->getStatut();
             
-
-            
+//            die(var_dump($_SESSION));
             return TRUE;
-//            var_dump($datas);
+//       var_dump($datas);
             
 //           echo $datas->getEmailUser();
         } else {
@@ -157,7 +172,7 @@ class ManagerUser{
             return FALSE;
         }
         
-        die;
+    
     }
     
     

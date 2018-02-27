@@ -41,20 +41,27 @@ class ManagerCommentaire{
         // drop row
 //        die($idCommentaire);
         
-        $q = $this -> _db -> prepare ('DELETE FROM Commentaire WHERE idCommentaire ='. $idCommentaire);
+        $q = $this -> _db -> prepare('DELETE FROM Commentaire WHERE idCommentaire =:idCommentaire');
+        
+        $q->bindValue(':idCommentaire', $idCommentaire);
         
         $data = $q->execute();
         
         return $data;
     }
     
-    public function get($id){
+    public function get($idCommentaire){
         
         // recupére row
         
         $id = (int) $id;
         
-        $q = $this -> _db ->query('SELECT * FROM Commentaire WHERE idCommentaire ='.$id);
+        $q = $this -> _db ->prepare('SELECT * FROM Commentaire WHERE idCommentaire =:idCommentaire');
+        
+        $q->bindValue(':idCommentaire', $idCommentaire);
+        
+        $data = $q->execute();
+
         
         $data = $q -> fetch (PDO::FETCH_ASSOC);
         
@@ -69,9 +76,12 @@ class ManagerCommentaire{
     
     public function getListCommentaireByArticle($Article_idArticle){
         
-        $q = $this->_db->query('SELECT * FROM Commentaire WHERE Article_idArticle= '.$Article_idArticle );
+    $q = $this->_db->prepare('SELECT * FROM Commentaire WHERE Article_idArticle=:Article_idArticle');
         
+    $q->bindValue(':Article_idArticle', $Article_idArticle);
         
+    $data = $q->execute();
+
         
     while ($data = $q->fetch(PDO::FETCH_ASSOC)){
         

@@ -37,24 +37,32 @@ class ArticleManager{
         
     }
     
-    public function delete($article){
+    public function delete($idArticle){
         
         // drop row
 
-        $q = $this -> _db -> prepare ('DELETE FROM Article WHERE idArticle ='. $article);
+        $q = $this -> _db -> prepare('DELETE FROM Article WHERE idArticle =:idArticle');
+        
+        $q->bindValue(':idArticle', $idArticle);
+        
         
         $data = $q->execute();
         
         return $data;
     }
     
-    public function get($id){
+    public function get($idArticle){
         
         // recupére row
         
         $id = (int) $id;
         
-        $q = $this -> _db ->query('SELECT * FROM Article WHERE idArticle ='.$id);
+        $q = $this -> _db ->prepare('SELECT * FROM Article WHERE idArticle =:idArticle');
+        
+        $q->bindValue(':idArticle', $idArticle);
+        
+        $data = $q->execute();
+
         
         $data = $q -> fetch (PDO::FETCH_ASSOC);
         
