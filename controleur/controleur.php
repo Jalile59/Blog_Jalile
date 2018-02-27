@@ -194,10 +194,7 @@ function viewModifyArticle($twig,$id){
     
     $data=$dataArticle->get($id);
     
-    $data = array(
-        'data'=>$data,
-        'session' => $_SESSION    
-    );
+
     
     
     
@@ -263,7 +260,7 @@ function addcommentaire($commentaire,$idarticle){
     
     $requete->add($commentaires);
     
-    header('Location:index.php?action=article');
+    header('location: ./index.php?action=viewarticle&idarticle='.$idarticle);
 
     exit();
     
@@ -291,6 +288,46 @@ function deleteCommentaire($twig,$idCommentaire, $idarticle ){
     
     $drop = new ManagerCommentaire();
     $requete = $drop->delete($idCommentaire);
+    
+    header('location: ./index.php?action=viewarticle&idarticle='.$idarticle);
+    
+    
+}
+
+function modifyCommentaire($twig, $idCommentaire, $idArticle){
+    
+    $requete = new ManagerCommentaire();
+    
+    $Modifcommentaire = $requete->get($idCommentaire);
+    
+//    die(var_dump($requete));
+    
+    /////////////////////
+    
+    $dataArticle = new ArticleManager();
+    
+    $data=$dataArticle->get($idArticle);
+    
+    $commentaire = new ManagerCommentaire();
+    
+    $q = $commentaire->getListCommentaireByArticle($idArticle);
+    
+    
+       
+    echo $twig->render('viewarticleModifyCommentaire.twig',array(   data=>$data,
+                                                                    commentaire=>$q,
+                                                                    modifCommentaire=>$Modifcommentaire
+                                               ));
+    
+    /////////////////////
+}
+
+
+function updateCommentaire($commentaire, $idCommentaire, $idarticle){
+    
+    $data = new ManagerCommentaire;
+    
+    $requete = $data->updateCommentaire($commentaire, $idCommentaire);
     
     header('location: ./index.php?action=viewarticle&idarticle='.$idarticle);
 }

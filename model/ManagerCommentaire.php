@@ -61,7 +61,7 @@ class ManagerCommentaire{
         $data= $Commentaires [] = new Commentaire($data);
         
 //        var_dump($data);
-        
+//        die;
 
         
         return  $Commentaires;
@@ -84,19 +84,14 @@ class ManagerCommentaire{
     
     
     
-    public function update(Commentaire $commentaire){
+    public function updateCommentaire($ContentCommentaire, $idCommentaire){
         
-    $q = $this->_db->prepare('UPDATE Article SET NameArticle =:NameArticle, Categorie =:Categorie, Dirphoto =:Dirphoto, user_iduser =:user_iduser, dateModificationArticle =:dateModificationArticle, Content =:Content WHERE idArticle=:idArticle');
+    $q = $this->_db->prepare('UPDATE Commentaire SET  ContentCommentaire =:ContentCommentaire WHERE idCommentaire=:idCommentaire');
         
-        
-        $q->bindValue(':ContentCommentaire', $commentaire->getContentCommentaire());
-        $q->bindValue(':CreateDate', $commentaire->getCreateDate());
-        $q->bindValue(':Valide', $commentaire->getValide()); 
-        $q->bindValue(':user_iduser', $commentaire->ser_iduser());
-        $q->bindValue(':Article_idArticle', $commentaire->getArticle_idArticle());
-        $q->bindValue(':idCommentaire', $commentaire->getIdCommentaire());
+    $q->bindValue(':ContentCommentaire', $ContentCommentaire);
+    $q->bindValue(':idCommentaire', $idCommentaire);
 
-        return $data = $q->execute();
+    return $data = $q->execute();
         
     }
     

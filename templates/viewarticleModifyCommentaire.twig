@@ -11,13 +11,13 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <div class="modal-body">
+                <div class="modal-body" >
                     {% for data in data %}
                         <h2 style="text-align: center">{{ data.NameArticle }} {% if session.Id == data.user_iduser or session.Statut == 'Admin' %} <a href="index.php?action=ViewModify&Articleid={{ data.idArticle}}"><img src="../public/img/bouton-modifier_318-77528.png"/></a><a href="index.php?action=dropArticle&id={{ data.idArticle}}"><img src="../public/img/supprimer.png"/></h2></a> {% else %}</h2>{% endif %}
                     <hr class="star-primary">
                     <img src=".{{data.Dirphoto}}" class="img-responsive img-centered" alt="">
                     <p style="text-align: justify">{{data.Content|raw}} </p>
-                    <ul class="list-inline item-details">
+                    <ul class="list-inline item-details" id="comment">
                         <li>Auteur:
                             <strong><a href="#"></a>
                             </strong>
@@ -26,29 +26,31 @@
                             <strong><a href="#">{{ data.CreateDate|date('d-m-Y') }}</a>
                             </strong>
                         </li>
-                        <li>Service:
+                        <li >Service:
                             <strong><a href="#">{{ data.Categorie }}</a>
                             </strong>
                         </li>
                     </ul>
                     {% if session.Nom %}
+                        {% for modifCommentaire in modifCommentaire %}
                     <div id="commentaire">
                         
                         <div class="row">
-                            <form method="POST" action="index.php?action=addcommentaire&idarticle={{data.idArticle}}"  enctype="multipart/form-data" >
+                            <form method="POST" action="index.php?action=upComentaire&idarticle={{data.idArticle}}&idCommentaire={{ modifCommentaire.idCommentaire }}"  enctype="multipart/form-data" >
                                 <div id="photoutilisateur" class="col-lg-12">
                                     <label for="comment">Commentaire:</label>
-                                        <textarea class="form-control" rows="7"  name="commentaire" required></textarea>                                
+                                    <textarea class="form-control" rows="7"  name="commentaire" required>{{modifCommentaire.ContentCommentaire}}</textarea>                                
                                     </div>
                                 <div id="Bouton" class="col-lg-9">
-                                    <button type="submit" class="btn btn-primary">Publier</button>
+                                    <button type="submit" class="btn btn-primary">Modifier</button>
                                 </div>
                             </form>    
                         </div>
                        </div>    
                         {% else %}
-                        {% endif %}
                         
+                        {% endfor %}
+                        {% endif %}
                         {% for commentaire in commentaire %}
                       
                             
