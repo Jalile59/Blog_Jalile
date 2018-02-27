@@ -12,6 +12,7 @@ class Article{
     private $_content;
     private $_User_iduser;
     private $_CreateDate;
+    private $_chapo;
 
 
 
@@ -70,6 +71,11 @@ class Article{
         
         
         return $this->_User_iduser;
+    }
+    
+    public function getChapo(){
+        
+        return $this->_chapo;
     }
 
 
@@ -166,6 +172,11 @@ class Article{
     }
         
         
+    }
+    
+    public function setChapo($chapo){
+        
+        $this->_chapo = $chapo;
     }
     
     

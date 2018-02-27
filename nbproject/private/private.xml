@@ -7,11 +7,11 @@
             <file>file:/Y:/Blog_Jalile/index.php</file>
             <file>file:/Y:/Blog_Jalile/templates/viewarticle.twig</file>
             <file>file:/Y:/Blog_Jalile/public/css/freelancerPerso.css</file>
-            <file>file:/Y:/Blog_Jalile/templates/article.twig</file>
             <file>file:/Y:/Blog_Jalile/model/ManagerCommentaire.php</file>
             <file>file:/Y:/Blog_Jalile/templates/template.twig</file>
             <file>file:/Y:/Blog_Jalile/model/Commentaire.php</file>
             <file>file:/Y:/Blog_Jalile/model/Article.php</file>
+            <file>file:/Y:/Blog_Jalile/templates/viewarticleModifyCommentaire.twig</file>
         </group>
     </open-files>
 </project-private>
