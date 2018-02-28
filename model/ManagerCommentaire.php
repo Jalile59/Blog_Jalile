@@ -17,13 +17,6 @@ class ManagerCommentaire
     
     public function add(Commentaire $commentaire)
     {
-        
-        // assignation content
-//        var_dump($commentaire);
-//        die;
-        
-
-        
         $q = $this->_db->prepare('INSERT INTO Commentaire(ContentCommentaire, CreateDate, user_iduser, Article_idArticle, Valide) VALUES (:ContentCommentaire, :CreateDate, :user_iduser, :Article_idArticle, :Valide)');
         
         
@@ -40,8 +33,7 @@ class ManagerCommentaire
     {
         
         // drop row
-//        die($idCommentaire);
-        
+
         $q = $this -> _db -> prepare('DELETE FROM Commentaire WHERE idCommentaire =:idCommentaire');
         
         $q->bindValue(':idCommentaire', $idcommentaire);
@@ -69,8 +61,6 @@ class ManagerCommentaire
         
         $data= $Commentaires [] = new Commentaire($data);
         
-//        var_dump($data);
-//        die;
 
         
         return  $Commentaires;

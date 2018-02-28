@@ -17,12 +17,6 @@ class ArticleManager
     
     public function addArticle(Article $article)
     {
-        
-        // assignation content
-//        var_dump($article);
-//        die;
-
-        
         $q = $this->_db->prepare('INSERT INTO Article(NameArticle, Categorie, Dirphoto, user_iduser, Content, Chapo, Auteur) VALUES (:NameArticle, :Categorie, :Dirphoto, :user_iduser, :Content, :Chapo, :Auteur)');
         
         
@@ -71,7 +65,6 @@ class ArticleManager
         
         $data = $Article [] = new Article($data);
         
-//        var_dump($data);
         
 
         
@@ -97,7 +90,6 @@ class ArticleManager
     {
         $q = $this->_db->prepare('UPDATE Article SET NameArticle =:NameArticle, Categorie =:Categorie, Dirphoto =:Dirphoto, user_iduser =:user_iduser, dateModificationArticle =:dateModificationArticle, Content =:Content, Chapo=:Chapo, Auteur =:Auteur WHERE idArticle=:idArticle');
         
-//    die(var_dump($article));
         
         $q->bindValue(':NameArticle', $article->getNameArticle());
         $q->bindValue(':Categorie', $article->getCategorie());

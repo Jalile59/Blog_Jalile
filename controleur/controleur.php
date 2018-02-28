@@ -98,11 +98,9 @@ function getListArticle($twig)
     
     $data= $listeArticle->getListArticle();
         
-//    var_dump($data);
     
  
     
-//    die(var_dump($data));
     
     echo   $twig->render('article.twig', array(data =>$data));
 }
@@ -119,7 +117,6 @@ function viewArticle($twig, $idarticle)
     
     
     
-//    die(var_dump($q));
     
     echo $twig->render('viewarticle.twig', array(data=>$data,
                                                 commentaire=>$q
@@ -187,13 +184,11 @@ function addinscription($name, $surename, $pseudo, $mail, $mdp)
       'SurenameUser' => $surename,
       'Pseudo' => $pseudo,
       'EmailUser' => $mail,
-      'MdpUser' => $mdp,        
+      'MdpUser' => $mdp,
     ];
     
     $inscription = new User($data);
-    
-//    die(var_dump($inscription));
-    
+        
   
     $addinscription = new ManagerUser();
     $requete = $addinscription->add($inscription);
@@ -230,7 +225,6 @@ function addcommentaire($commentaire, $idarticle)
     
     $commentaires = new Commentaire($data);
 
-//    die(var_dump($commentaires));
     
     $requete = new ManagerCommentaire();
     
@@ -272,9 +266,7 @@ function modifyCommentaire($twig, $idCommentaire, $idarticle)
     
     $modifcommentaire = $requete->get($idCommentaire);
     
-//    die(var_dump($requete));
     
-    /////////////////////
     
     $dataArticle = new ArticleManager();
     
@@ -292,7 +284,6 @@ function modifyCommentaire($twig, $idCommentaire, $idarticle)
         modifCommentaire=>$modifcommentaire
     ));
     
-    /////////////////////
 }
 
 

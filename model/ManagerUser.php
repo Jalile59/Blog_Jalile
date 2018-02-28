@@ -17,12 +17,6 @@ class ManagerUser
     
     public function add(User $user)
     {
-        
-        // assignation content
-//        var_dump($article);
-        
-        
-        
         $q = $this->_db->prepare('INSERT INTO user(NameUser, SurenameUser, Pseudo, EmailUser, MdpUser, PhotoUser, Statut ) VALUES (:NameUser, :SurenameUser, :Pseudo, :EmailUser, :MdpUser, :PhotoUser, :Statut)');
         
         
@@ -91,7 +85,6 @@ class ManagerUser
         $data = $user [] = new User($data);
         
         
-//        die(var_dump($user));
 
         return $data;
     }
@@ -159,11 +152,7 @@ class ManagerUser
             $_SESSION['Prenom'] = $datas->getSurenameUser();
             $_SESSION['Statut'] = $datas->getStatut();
             
-//            die(var_dump($_SESSION));
             return true;
-//       var_dump($datas);
-            
-//           echo $datas->getEmailUser();
         } else {
             return false;
         }

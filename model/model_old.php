@@ -3,15 +3,15 @@
 //require './vendor/PhJal/Phjal_ManagerArticle.php';
 //require './vendor/PhJal/Phjal_Article.php';
 
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
 
-function addArticle_($NameArticle, $categorie, $Dirphoto, $content){
-    
+function addArticle_($NameArticle, $categorie, $Dirphoto, $content)
+{
     $article = new Article();
     
     $user_iduser= 1; // replacer par une variable $sessionId
@@ -26,7 +26,7 @@ function addArticle_($NameArticle, $categorie, $Dirphoto, $content){
     
     $article->hydrate($data);
     
-//  var_dump($article);
+    //  var_dump($article);
     
     
     $db = connect();
@@ -35,11 +35,10 @@ function addArticle_($NameArticle, $categorie, $Dirphoto, $content){
     
 //    echo $article->getNameArticle();
     return $manager->add($article);
-
 }
 
-function getArticle($id){
-    
+function getArticle($id)
+{
     $db = connect();
     
     $article = new ArticleManager();
@@ -52,8 +51,8 @@ function getArticle($id){
     return $dataArticle;
 }
 
-function connect(){
-    
+function connect()
+{
     $db = new PDO('mysql:host=localhost;dbname=BlogJalile', 'root', '');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
