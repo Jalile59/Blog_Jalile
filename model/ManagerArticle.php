@@ -22,7 +22,7 @@ class ArticleManager{
         
 
         
-       $q = $this->_db->prepare('INSERT INTO Article(NameArticle, Categorie, Dirphoto, user_iduser, Content, Chapo) VALUES (:NameArticle, :Categorie, :Dirphoto, :user_iduser, :Content, :Chapo)');
+       $q = $this->_db->prepare('INSERT INTO Article(NameArticle, Categorie, Dirphoto, user_iduser, Content, Chapo, Auteur) VALUES (:NameArticle, :Categorie, :Dirphoto, :user_iduser, :Content, :Chapo, :Auteur)');
         
         
         $q->bindValue(':NameArticle', $article->getNameArticle());
@@ -31,6 +31,8 @@ class ArticleManager{
         $q->bindValue(':user_iduser', $article->getUser_iduser());
         $q->bindValue(':Content', $article->getContent());
         $q->bindValue(':Chapo', $article->getChapo());
+        $q->bindValue(':Auteur', $article->getAuteur());
+
         
         return $q->execute();
         
@@ -94,7 +96,7 @@ class ArticleManager{
     
     public function update(Article $article){
         
-    $q = $this->_db->prepare('UPDATE Article SET NameArticle =:NameArticle, Categorie =:Categorie, Dirphoto =:Dirphoto, user_iduser =:user_iduser, dateModificationArticle =:dateModificationArticle, Content =:Content, Chapo=:Chapo WHERE idArticle=:idArticle');
+    $q = $this->_db->prepare('UPDATE Article SET NameArticle =:NameArticle, Categorie =:Categorie, Dirphoto =:Dirphoto, user_iduser =:user_iduser, dateModificationArticle =:dateModificationArticle, Content =:Content, Chapo=:Chapo WHERE idArticle=:idArticle, Auteur =:Auteur');
         
         
     $q->bindValue(':NameArticle', $article->getNameArticle());
@@ -105,6 +107,8 @@ class ArticleManager{
     $q->bindValue(':dateModificationArticle', $article->getDateModificationArticle());
     $q->bindValue(':idArticle', $article->getIdArticle());
     $q->bindValue(':Chapo', $article->getChapo());
+    $q->bindValue(':Auteur', $article->getAuteur());
+
 
 
     return $data = $q->execute();

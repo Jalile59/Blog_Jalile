@@ -13,6 +13,7 @@ class Article{
     private $_User_iduser;
     private $_CreateDate;
     private $_chapo;
+    private $_auteur;
 
 
 
@@ -76,6 +77,11 @@ class Article{
     public function getChapo(){
         
         return $this->_chapo;
+    }
+    
+    public function getAuteur(){
+        
+        return $this->_auteur;
     }
 
 
@@ -177,6 +183,11 @@ class Article{
     public function setChapo($chapo){
         
         $this->_chapo = $chapo;
+    }
+    
+    public function setAuteur($auteur){
+        
+        $this->_auteur = $auteur;
     }
     
     

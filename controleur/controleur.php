@@ -57,7 +57,7 @@ function callConnect($twig){
 
 ///////////////////////////////////////////////////////////////////////////////
 
-function AddArticle($NameArticle, $categorie, $Dirphoto, $content, $chapo){
+function AddArticle($NameArticle, $categorie, $Dirphoto, $content, $chapo, $auteur){
       
     
     $user_iduser= $_SESSION['Id']; 
@@ -84,7 +84,8 @@ function AddArticle($NameArticle, $categorie, $Dirphoto, $content, $chapo){
             'Categorie' => $categorie,
             'content' => $content,
             'user_iduser'=> $user_iduser,
-            'chapo'=> $chapo
+            'chapo'=> $chapo,
+            'Auteur'=> $auteur
         ];
 
         $article = new Article($data);

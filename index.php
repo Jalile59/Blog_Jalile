@@ -49,7 +49,7 @@ if (isset($_GET['action'])){
     }elseif ($_GET['action']=='AddArticle') {
         
         
-        $add = AddArticle($_POST['inputArticleTitre'], $_POST['inputArticleGatégorie'], $_POST['inputArticleTitre'], $_POST['inputArticleContent'], $_POST['inputChapo']);
+        $add = AddArticle($_POST['inputArticleTitre'], $_POST['inputArticleGatégorie'], $_POST['inputArticleTitre'], $_POST['inputArticleContent'], $_POST['inputChapo'], $_POST['inputArticleAuteur']);
         
     }elseif ($_GET['action']=='viewarticle') {
         
