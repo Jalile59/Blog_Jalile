@@ -1,139 +1,124 @@
 <?php
 /**
- * 
+ *
  */
-class User{
-    
+class User
+{
     private $_iduser;
-    private $_NameUser;
-    private $_SurenameUser;
-    private $_Pseudo;
-    private $_EmailUser;
-    private $_MdpUser;
-    private $_PhotoUser;
-    private $_Statut;
+    private $_nameuser;
+    private $_surenameuser;
+    private $_pseudo;
+    private $_emailuser;
+    private $_mdpuser;
+    private $_photouser;
+    private $_statut;
 
 
 
     
-    public function __construct($data) {
-        
+    public function __construct($data)
+    {
         return $this->hydrate($data);
     }
     /**
-     * 
+     *
      * @return type
      */
-    public function getIduser() {
-        
+    public function getIduser()
+    {
         return $this->_iduser;
     }
     
-    public function getNameuser(){
-        
-        return $this->_NameUser;
+    public function getNameuser()
+    {
+        return $this->_nameuser;
     }
     
     /**
-     * 
+     *
      * @return type
      */
-    public function getSurenameUser() {
-        
-        return $this->_SurenameUser;
-        
+    public function getSurenameUser()
+    {
+        return $this->_surenameuser;
     }
     
-    public function getPseudo(){
-        
-        return $this->_Pseudo;
-        
+    public function getPseudo()
+    {
+        return $this->_pseudo;
     }
     
-    public function getEmailUser(){
-        
-        return $this->_EmailUser;
-        
+    public function getEmailUser()
+    {
+        return $this->_emailuser;
     }
     
-    public function getMdpUser(){
-        
-        return $this->_MdpUser;
+    public function getMdpUser()
+    {
+        return $this->_mdpuser;
     }
     
-    public function getPhotoUser(){
-        
-        return $this->_PhotoUser;
+    public function getPhotoUser()
+    {
+        return $this->_photouser;
     }
     
-    public function getStatut(){
-        
-        return $this->_Statut;
+    public function getStatut()
+    {
+        return $this->_statut;
     }
     
 
-    public function hydrate($data){
-        
+    public function hydrate($data)
+    {
         foreach ($data as $key => $value) {     ////$key correcspont à l'attribut dans la bdd----$value correspond à la valeur dans la bdd
 
             $methode = 'set'.ucfirst($key);     //// ucfirst -> mé une majuscule à la premier lettre -> meth
 
-            if (method_exists($this, $methode)){
-
-                $this->$methode ($value);
-                   }
-               }
-        
-        
+            if (method_exists($this, $methode)) {
+                $this->$methode($value);
+            }
+        }
     }
     
     
-    public function setIduser($iduser){
-        
+    public function setIduser($iduser)
+    {
         $this->_iduser =$iduser;
     }
     
-    public function setNameUser($NameUser){
-        
-        $this->_NameUser =$NameUser;
+    public function setNameUser($nameuser)
+    {
+        $this->_nameuser =$nameuser;
     }
     
-    public function setSurenameUser($SurenameUser){
-        
-        $this->_SurenameUser=$SurenameUser;
+    public function setSurenameUser($surenameuser)
+    {
+        $this->_surenameuser=$surenameuser;
     }
     
-    public function setPseudo($Pseudo){
-        
-        $this->_Pseudo = $Pseudo;
-        
+    public function setPseudo($pseudo)
+    {
+        $this->_pseudo = $pseudo;
     }
     
-    public function setEmailUser($EmailUser){
-        
-        $this->_EmailUser = $EmailUser;
+    public function setEmailUser($emailuser)
+    {
+        $this->_emailuser = $emailuser;
     }
     
-    public function setMdpUser($MdpUser){
-        
-        
-        
-        $this->_MdpUser = $MdpUser;
-        
+    public function setMdpUser($mdpuser)
+    {
+        $this->_mdpuser = $mdpuser;
     }
     
-    public function setPhotoUser($PhotoUser){
-        
-        $this-> _PhotoUser =$PhotoUser;
+    public function setPhotoUser($photouser)
+    {
+        $this-> _photouser =$photouser;
     }
     
-    public function setStatut($Statut){
-        
-        $this->_Statut = $Statut;
+    public function setStatut($statut)
+    {
+        $this->_statut = $statut;
     }
-    
-    
-    
-    
 }
-

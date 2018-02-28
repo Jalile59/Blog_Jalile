@@ -1,200 +1,178 @@
 <?php
 /**
- * 
+ *
  */
-class Article{
-    
-    private $_idArticle;
-    private $_NameArticle;
-    private $_Categorie;
-    private $_Dirphoto;
-    private $_DateModificationArticle;
+class Article
+{
+    private $_idarticle;
+    private $_namearticle;
+    private $_categorie;
+    private $_dirphoto;
+    private $_datemodificationarticle;
     private $_content;
-    private $_User_iduser;
-    private $_CreateDate;
+    private $_useriduser;
+    private $_createDate;
     private $_chapo;
     private $_auteur;
 
 
 
     
-    public function __construct($data) {
-        
+    public function __construct($data)
+    {
         return $this->hydrate($data);
     }
     /**
-     * 
+     *
      * @return type
      */
-    public function getIdArticle() {
-        
-        return $this->_idArticle;
+    public function getIdArticle()
+    {
+        return $this->_idarticle;
     }
     
-    public function getCreateDate(){
-        
-        return $this->_CreateDate;
+    public function getCreateDate()
+    {
+        return $this->_createDate;
     }
     
     /**
-     * 
+     *
      * @return type
      */
-    public function getNameArticle() {
-        
-        return $this->_NameArticle;
-        
+    public function getNameArticle()
+    {
+        return $this->_namearticle;
     }
     
-    public function getCategorie(){
-        
-        return $this->_Categorie;
-        
+    public function getCategorie()
+    {
+        return $this->_categorie;
     }
     
-    public function getDirphoto(){
-        
-        return $this->_Dirphoto;
-        
+    public function getDirphoto()
+    {
+        return $this->_dirphoto;
     }
     
-    public function getContent(){
-        
+    public function getContent()
+    {
         return $this->_content;
     }
     
-    public function getDateModificationArticle(){
-        
-        return $this->_DateModificationArticle;
+    public function getDateModificationArticle()
+    {
+        return $this->_datemodificationarticle;
     }
     
-    public function getUser_iduser (){
-        
-        
-        return $this->_User_iduser;
+    public function getUseriduser()
+    {
+        return $this->_useriduser;
     }
     
-    public function getChapo(){
-        
+    public function getChapo()
+    {
         return $this->_chapo;
     }
     
-    public function getAuteur(){
-        
+    public function getAuteur()
+    {
         return $this->_auteur;
     }
 
 
 
 
-    public function hydrate($data){
-        
+    public function hydrate($data)
+    {
         foreach ($data as $key => $value) {     ////$key correcspont à l'attribut dans la bdd----$value correspond à la valeur dans la bdd
 
             $methode = 'set'.ucfirst($key);     //// ucfirst -> mé une majuscule à la premier lettre -> meth
 
-            if (method_exists($this, $methode)){
-
-                $this->$methode ($value);
-                   }
-               }
-        
-        
+            if (method_exists($this, $methode)) {
+                $this->$methode($value);
+            }
+        }
     }
     
     
-    public function setIdArticle($idArticle){
-        
-        $this->_idArticle =$idArticle;
+    public function setIdArticle($idarticle)
+    {
+        $this->_idarticle =$idarticle;
     }
     
-    public function setDateModificationArticle($DateModificationArticle){
-        
-        $this->_DateModificationArticle =$DateModificationArticle;
+    public function setDateModificationArticle($datemodificationarticle)
+    {
+        $this->_datemodificationarticle =$datemodificationarticle;
     }
     
-    public function setCreateDate($CreateDate){
-        
-        $this->_CreateDate=$CreateDate;
+    public function setCreateDate($createDate)
+    {
+        $this->_createDate=$createDate;
     }
     
-    public function setNameArticle($NameArticle){
-        
-        $this->_NameArticle = $NameArticle;
-        
+    public function setNameArticle($namearticle)
+    {
+        $this->_namearticle = $namearticle;
     }
     
-    public function setCategorie($Catégorie){
-        
-        $this->_Categorie = $Catégorie;
+    public function setCategorie($categorie)
+    {
+        $this->_categorie = $categorie;
     }
     
-    public function setDirphoto($Dirphoto){
-        
-        
-        
-        $this->_Dirphoto = $Dirphoto;
-        
+    public function setDirphoto($dirphoto)
+    {
+        $this->_dirphoto = $dirphoto;
     }
     
-    public function setContent($Content){
-        
-        $this-> _content =$Content;
+    public function setContent($content)
+    {
+        $this-> _content =$content;
     }
     
-    public function setUser_iduser($User_iduser){
-        
-        $this->_User_iduser=$User_iduser;
+    public function setUseriduser($useriduser)
+    {
+        $this->_useriduser=$useriduser;
     }
     
     
-    public function checkDirphoto($_FILE){
-        
+    public function checkDirphoto($_FILE)
+    {
+        $extention = new SplFileInfo($_FILES['photoAticle']['name']);
     
-    $extention = new SplFileInfo ($_FILES['photoAticle']['name']);
     
-    
-    if ($_FILES ['photoAticle']['error']== 0){
+        if ($_FILES ['photoAticle']['error']== 0) {
+            if (mb_strtolower($extention->getExtension()) =='png'or mb_strtolower($extention->getExtension()) == 'jpg') {
+                if ($_FILES ['photoAticle']['size']<= 2000000) { //valeur en octets
                 
-        if(mb_strtolower($extention->getExtension()) =='png'or mb_strtolower($extention->getExtension()) == 'jpg'){
-            
-            if ($_FILES ['photoAticle']['size']<= 2000000){ //valeur en octets
-                
-                $name = md5($_FILES['photoAticle']['name']); // modifier uid unique
-                $destination = './public/img/'.$name.'.'.$extention->getExtension(); // 
+                    $name = md5($_FILES['photoAticle']['name']); // modifier uid unique
+                $destination = './public/img/'.$name.'.'.$extention->getExtension(); //
                 
                 
                 move_uploaded_file($_FILES ['photoAticle']['tmp_name'], $destination);
                 
-                $this->_Dirphoto = $destination;
+                    $this->_dirphoto = $destination;
                 
-                return TRUE;
+                    return true;
+                }
             }
-            
-        }
-    } else {
-        
-        $destination = './public/img/product-fullsize.jpg';
+        } else {
+            $destination = './public/img/product-fullsize.jpg';
           
-        $this->_Dirphoto = $destination; 
+            $this->_dirphoto = $destination;
         
-        return FALSE;
-    }
-        
-        
+            return false;
+        }
     }
     
-    public function setChapo($chapo){
-        
+    public function setChapo($chapo)
+    {
         $this->_chapo = $chapo;
     }
     
-    public function setAuteur($auteur){
-        
+    public function setAuteur($auteur)
+    {
         $this->_auteur = $auteur;
     }
-    
-    
-    
 }
-

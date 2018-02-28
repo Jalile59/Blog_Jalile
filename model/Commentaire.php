@@ -1,117 +1,105 @@
 <?php
 /**
- * 
+ *
  */
-class Commentaire{
-    
-    private $_idCommentaire;
-    private $_ContentCommentaire;
-    private $_CreateDate;
-    private $_user_iduser;
-    private $_Article_idArticle;
-    private $_Valide;
+class Commentaire
+{
+    private $_idcommentaire;
+    private $_contentcommentaire;
+    private $_createdate;
+    private $_useriduser;
+    private $_articleidarticle;
+    private $_valide;
 
 
 
     
-    public function __construct($data) {
-        
+    public function __construct($data)
+    {
         return $this->hydrate($data);
     }
     /**
-     * 
+     *
      * @return type
      */
-    public function getIdCommentaire() {
-        
-        return $this->_idCommentaire;
+    public function getIdCommentaire()
+    {
+        return $this->_idcommentaire;
     }
     
-    public function getContentCommentaire(){
-        
-        return $this->_ContentCommentaire;
+    public function getContentCommentaire()
+    {
+        return $this->_contentcommentaire;
     }
     
     /**
-     * 
+     *
      * @return type
      */
-    public function getCreateDate() {
-        
-        return $this->_CreateDate;
-        
+    public function getCreateDate()
+    {
+        return $this->_createdate;
     }
     
-    public function getUser_iduser(){
-        
-        return $this->_user_iduser;
-        
+    public function getUseriduser()
+    {
+        return $this->_useriduser;
     }
     
-    public function getArticle_idArticle(){
-        
-        return $this->_Article_idArticle;
-        
+    public function getArticleidArticle()
+    {
+        return $this->_articleidarticle;
     }
     
-    public function getValide(){
-        
-        return $this->_Valide;
+    public function getValide()
+    {
+        return $this->_valide;
     }
     
 
 
 
 
-    public function hydrate($data){
-        
+    public function hydrate($data)
+    {
         foreach ($data as $key => $value) {     ////$key correcspont à l'attribut dans la bdd----$value correspond à la valeur dans la bdd
 
             $methode = 'set'.ucfirst($key);     //// ucfirst -> mé une majuscule à la premier lettre -> meth
 
-            if (method_exists($this, $methode)){
-
-                $this->$methode ($value);
-                   }
-               }
-        
-        
+            if (method_exists($this, $methode)) {
+                $this->$methode($value);
+            }
+        }
     }
     
     
-    public function setIdCommentaire($idCommentaire){
-        
-        $this->_idCommentaire =$idCommentaire;
+    public function setIdCommentaire($idcommentaire)
+    {
+        $this->_idcommentaire =$idcommentaire;
     }
     
-    public function setContentCommentaire($ContentCommentaire){
-        
-        $this->_ContentCommentaire =$ContentCommentaire;
+    public function setContentCommentaire($contentcommentaire)
+    {
+        $this->_contentcommentaire =$contentcommentaire;
     }
     
-    public function setCreateDate($CreateDate){
-        
-        $this->_CreateDate=$CreateDate;
+    public function setCreateDate($createdate)
+    {
+        $this->_createdate=$createdate;
     }
     
-    public function setUser_iduser($user_iduser){
-        
-        $this->_user_iduser = $user_iduser;
-        
+    public function setUseriduser($useriduser)
+    {
+        $this->_useriduser = $useriduser;
     }
     
-    public function setArticle_idArticle($Article_idArticle){
-        
-        $this->_Article_idArticle = $Article_idArticle;
+    public function setArticleidArticle($articleidarticle)
+    {
+        $this->_articleidarticle = $articleidarticle;
     }
     
-    public function setValide($Valide){
-
-        $this->_Valide = $Valide;
-        
+    public function setValide($valide)
+    {
+        $this->_valide = $valide;
     }
-    
-    
-    
-
 }

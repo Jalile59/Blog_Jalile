@@ -3,7 +3,7 @@
 require './model/ManagerArticle.php';
 require './model/model_old.php';
 
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -11,79 +11,66 @@ require './model/model_old.php';
 
 
 
-function callAddArticle (){
-    
+function callAddArticle()
+{
     echo $twig->render('newArticle.twig');
-    
 }
 
 
-function callArticle(){
-    
+function callArticle()
+{
     echo $twig->render('article.twig');
-    
 }
 
-function callHome($twig){
-    
-
+function callHome($twig)
+{
     echo $twig->render('home.twig');
-    
 }
 
-function callInscription($twig){
-    
-    if($_SESSION['Nom']){
-        
+function callInscription($twig)
+{
+    if ($_SESSION['Nom']) {
         echo $twig->render('home.twig');
-    }else
-    
-        echo $twig->render('inscription.twig'); 
+    } else {
+        echo $twig->render('inscription.twig');
+    }
 }
 
-function callConnect($twig){
-
-    if($_SESSION['Nom']){
-        
+function callConnect($twig)
+{
+    if ($_SESSION['Nom']) {
         echo $twig->render('home.twig');
-        
-    }else{
-        
+    } else {
         echo $twig->render('connection.twig');
     }
-    
-    
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
-function AddArticle($NameArticle, $categorie, $Dirphoto, $content, $chapo, $auteur){
-      
-    
-    $user_iduser= $_SESSION['Id']; 
+function addarticle($namearticle, $categorie, $content, $chapo, $auteur)
+{
+    $user_iduser= $_SESSION['Id'];
     
     // Verificatiuon des champs postés
     
     $errors = array();
     
-    if ( empty($NameArticle) ) {
+    if (empty($namearticle)) {
         $errors[] = 'Veuillez renseigner le titre';
     }
-    if ( empty($content) ) {
+    if (empty($content)) {
         $errors[] = 'Veuillez renseigner le contenu';
     }
     
     // Si erreurs
-    if ( !empty($error) ) {
-        $twig->render ('newArticle.twig',array('errors' => $errors, 'postParams'=> $_POST));
-    }    
-    else {    
-
+    if (!empty($error)) {
+        $twig->render('newArticle.twig', array('errors' => $errors, 'postParams'=> $_POST));
+    } else {
         $data = [
-            'NameArticle' =>$NameArticle,
-            'Categorie' => $categorie,
-            'content' => $content,
-            'user_iduser'=> $user_iduser,
+            'NameArticle' =>$namearticle,
+            'categorie' => $categorie,
+            'Content' => $content,
+            'useriduser'=> $user_iduser,
             'chapo'=> $chapo,
             'Auteur'=> $auteur,
             
@@ -91,30 +78,22 @@ function AddArticle($NameArticle, $categorie, $Dirphoto, $content, $chapo, $aute
 
         $article = new Article($data);
         $CheckFile = $article->checkDirphoto($_FILE);
-                                                        ///////// probleme si pas de "file"
-        if ($CheckFile){
-
-
-
-
-
-        }else{
-            
+        ///////// probleme si pas de "file"
+        if ($CheckFile) {
+        } else {
         }
         
         $manager = new ArticleManager();
 
-        $manager->add($article);
+        $manager->addArticle($article);
         
         header('Location: index.php?action=article');
         exit();
-
     }
-
 }
 
-function getListArticle($twig){
-      
+function getListArticle($twig)
+{
     $listeArticle = new ArticleManager();
     
     $data= $listeArticle->getListArticle();
@@ -125,63 +104,55 @@ function getListArticle($twig){
     
 //    die(var_dump($data));
     
-    echo   $twig->render ('article.twig',array(data =>$data));
-
-
-            
-    
-    
+    echo   $twig->render('article.twig', array(data =>$data));
 }
 
-function viewArticle($twig, $idArticle){
-    
+function viewArticle($twig, $idarticle)
+{
     $dataArticle = new ArticleManager();
     
-    $data=$dataArticle->get($idArticle);
+    $data=$dataArticle->get($idarticle);
     
     $commentaire = new ManagerCommentaire();
     
-    $q = $commentaire->getListCommentaireByArticle($idArticle);
+    $q = $commentaire->getListCommentaireByArticle($idarticle);
     
     
     
 //    die(var_dump($q));
     
-    echo $twig->render('viewarticle.twig',array(data=>$data,
+    echo $twig->render('viewarticle.twig', array(data=>$data,
                                                 commentaire=>$q
                                                ));
 }
 
-function dropArticle($id){
-    
+function dropArticle($id)
+{
     $drop = new ArticleManager();
     $requete = $drop->delete($id);
     
-    if ($requete){
-        
+    if ($requete) {
         header('Location: index.php?action=article');
         
         exit();
-    }else{
-        
+    } else {
         echo 'erreur lors de la suppression de l article';
     }
-    
 }
 
-function updateArticle ($NameArticle, $categorie, $Dirphoto, $content, $chapo, $auteur,$idArticle){
- 
-    $user_iduser= $_SESSION['Id']; 
+function updateArticle($aamearticle, $categorie, $dirphoto, $content, $chapo, $auteur, $idarticle)
+{
+    $user_iduser= $_SESSION['Id'];
     $date = (date('Y-m-d'));
     
     $data = [
-        'NameArticle' =>$NameArticle,
+        'NameArticle' =>$namearticle,
         'Categorie' => $categorie,
-        'content' => $content,
-        'user_iduser'=> $user_iduser,
+        'Content' => $content,
+        'useriduser'=> $user_iduser,
         'chapo'=> $chapo,
         'Auteur'=> $auteur,
-        'idArticle'=>$idArticle
+        'idArticle'=>$idarticle
     ];
     
     
@@ -190,14 +161,14 @@ function updateArticle ($NameArticle, $categorie, $Dirphoto, $content, $chapo, $
     
     $CheckFile = $article->checkDirphoto($_FILE);
     
-    $upArticle= new ArticleManager();
-    $requete = $upArticle->update($article);
+    $uparticle= new ArticleManager();
+    $requete = $uparticle->update($article);
     
     header('Location: index.php?action=article');
 }
 
-function viewModifyArticle($twig,$id){
-    
+function viewModifyArticle($twig, $id)
+{
     $dataArticle = new ArticleManager();
     
     $data=$dataArticle->get($id);
@@ -206,20 +177,17 @@ function viewModifyArticle($twig,$id){
     
     
     
-    echo $twig->render('modifyArticle.twig',array(data=>$data));    
-    
+    echo $twig->render('modifyArticle.twig', array(data=>$data));
 }
 
-function addinscription($name, $surename, $pseudo, $mail, $mdp){
-    
+function addinscription($name, $surename, $pseudo, $mail, $mdp)
+{
     $data = [
       'NameUser' => $name,
       'SurenameUser' => $surename,
       'Pseudo' => $pseudo,
       'EmailUser' => $mail,
-      'MdpUser' => $mdp,
-      'PhotoUser' => $Dirphoto
-        
+      'MdpUser' => $mdp,        
     ];
     
     $inscription = new User($data);
@@ -235,8 +203,8 @@ function addinscription($name, $surename, $pseudo, $mail, $mdp){
     exit();
 }
 
-function login($email, $mdp, $twig){
-    
+function login($email, $mdp, $twig)
+{
     $requete = new ManagerUser();
     
     $q=$requete->checklogin($email, $mdp);
@@ -244,26 +212,26 @@ function login($email, $mdp, $twig){
     header('Location:index.php?action=home');
 
     exit();
-    }
+}
     
 
 
-function addcommentaire($commentaire,$idarticle){
-    
+function addcommentaire($commentaire, $idarticle)
+{
     $date = date('d-m-Y H:m');
     $user = $_SESSION['Id'];
     
     $data=[
-        ContentCommentaire => $commentaire,
-        Article_idArticle => $idarticle,
-        CreateDate => $date,
-        user_iduser => $user
+        'ContentCommentaire' => $commentaire,
+        'ArticleidArticle' => $idarticle,
+        'CreateDate' => $date,
+        'Useriduser' => $user
     ];
     
-//    echo $commentaire;
     $commentaires = new Commentaire($data);
-    
+
 //    die(var_dump($commentaires));
+    
     $requete = new ManagerCommentaire();
     
     $requete->add($commentaires);
@@ -271,11 +239,10 @@ function addcommentaire($commentaire,$idarticle){
     header('location: ./index.php?action=viewarticle&idarticle='.$idarticle);
 
     exit();
-    
 }
 
-function destroy($twig){
-    
+function destroy($twig)
+{
     session_destroy();
     
     header('Location:index.php?action=home');
@@ -283,30 +250,27 @@ function destroy($twig){
     exit();
 }
 
-function validationCommentaire($twig,$idCommentaire,$idarticle){
-    
+function validationCommentaire($twig, $idCommentaire, $idarticle)
+{
     $requete= new ManagerCommentaire();
     $requete->validationCommentaire($idCommentaire);
     
     header('location: ./index.php?action=viewarticle&idarticle='.$idarticle);
 }
 
-function deleteCommentaire($twig,$idCommentaire, $idarticle ){
-    
-    
+function deleteCommentaire($twig, $idCommentaire, $idarticle)
+{
     $drop = new ManagerCommentaire();
     $requete = $drop->delete($idCommentaire);
     
     header('location: ./index.php?action=viewarticle&idarticle='.$idarticle);
-    
-    
 }
 
-function modifyCommentaire($twig, $idCommentaire, $idArticle){
-    
+function modifyCommentaire($twig, $idCommentaire, $idarticle)
+{
     $requete = new ManagerCommentaire();
     
-    $Modifcommentaire = $requete->get($idCommentaire);
+    $modifcommentaire = $requete->get($idCommentaire);
     
 //    die(var_dump($requete));
     
@@ -314,25 +278,26 @@ function modifyCommentaire($twig, $idCommentaire, $idArticle){
     
     $dataArticle = new ArticleManager();
     
-    $data=$dataArticle->get($idArticle);
+    $data=$dataArticle->get($idarticle);
     
     $commentaire = new ManagerCommentaire();
     
-    $q = $commentaire->getListCommentaireByArticle($idArticle);
+    $q = $commentaire->getListCommentaireByArticle($idarticle);
     
     
        
-    echo $twig->render('viewarticleModifyCommentaire.twig',array(   data=>$data,
-                                                                    commentaire=>$q,
-                                                                    modifCommentaire=>$Modifcommentaire
-                                               ));
+    echo $twig->render('viewarticleModifyCommentaire.twig', array(
+        data=>$data,
+        commentaire=>$q,
+        modifCommentaire=>$modifcommentaire
+    ));
     
     /////////////////////
 }
 
 
-function updateCommentaire($commentaire, $idCommentaire, $idarticle){
-    
+function updateCommentaire($commentaire, $idCommentaire, $idarticle)
+{
     $data = new ManagerCommentaire;
     
     $requete = $data->updateCommentaire($commentaire, $idCommentaire);
