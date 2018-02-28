@@ -30,7 +30,7 @@
                      {% for data in data %}		
                      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <div class="card text-center">
-                                <div style="text-align: left"><a>auteur: deve</a></div><div style="text-align: right"><a >18/02/2018</a></div>
+                                <div id="enteteArt" class="col-md-6"><p>Auteur:{{data.Auteur}}</p></div><div class="col-md-6"><p>{{data.CreateDate|date('d-m-Y')}}</p></div>
                                    <img class="card-img-top" src="{{data.Dirphoto}}"  alt="" width="100%">
                                    <div class="card-block">
                                            <h4 class="card-title">{{ data.NameArticle }}</h4>

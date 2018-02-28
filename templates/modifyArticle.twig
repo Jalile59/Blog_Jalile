@@ -10,9 +10,13 @@
                     <form method="POST" action="index.php?action=UpdateArticle&Articleid={{data.idArticle}}" enctype="multipart/form-data">
                         
                   <div class="form-row">
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-6">
                       <label for="inputtext">Titre</label>
                       <input type="text" class="form-control" id="inputArticleTitre" value="{{ data.NameArticle }}" name ="inputArticleTitre" placeholder="Titre">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="">Auteur:</label>
+                      <input type="text" class="form-control" id="inputArticleTitre" name ="inputArticleAuteur" placeholder="Auteur" Value="{{data.Auteur}}" required>
                     </div>
                     <div class="form-group col-md-12">
                       <label for="inputPassword4">catégorie: </label>
@@ -22,8 +26,12 @@
                     </div>
                   </div>
                     <div class="form-group col-lg-12">
+                      <label for="comment">Chapô:</label>
+                      <textarea class="form-control" rows="3" id="contents" name="inputChapo"> {{data.Chapo}}</textarea>
+                    </div>
+                    <div class="form-group col-lg-12">
                       <label for="comment">Comment:</label>
-                      <textarea class="form-control" rows="15" id="inputArticleContent" name="inputArticleContent"> {{data.Content}}</textarea>
+                      <textarea class="form-control" rows="15" id="content" name="inputArticleContent"> {{data.Content}}</textarea>
                     </div>
                   <div class="col-lg-2">
                     <label>Photo Article (max 1mo) : </label>

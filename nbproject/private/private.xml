@@ -4,14 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Y:/Blog_Jalile/controleur/controleur.php</file>
+            <file>file:/Y:/Blog_Jalile/templates/newArticle.twig</file>
             <file>file:/Y:/Blog_Jalile/index.php</file>
-            <file>file:/Y:/Blog_Jalile/templates/viewarticle.twig</file>
             <file>file:/Y:/Blog_Jalile/public/css/freelancerPerso.css</file>
+            <file>file:/Y:/Blog_Jalile/templates/article.twig</file>
             <file>file:/Y:/Blog_Jalile/model/ManagerCommentaire.php</file>
-            <file>file:/Y:/Blog_Jalile/templates/template.twig</file>
-            <file>file:/Y:/Blog_Jalile/model/Commentaire.php</file>
+            <file>file:/Y:/Blog_Jalile/templates/modifyArticle.twig</file>
+            <file>file:/Y:/Blog_Jalile/model/ManagerArticle.php</file>
             <file>file:/Y:/Blog_Jalile/model/Article.php</file>
-            <file>file:/Y:/Blog_Jalile/templates/viewarticleModifyCommentaire.twig</file>
         </group>
     </open-files>
 </project-private>

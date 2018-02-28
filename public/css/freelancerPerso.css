@@ -8,6 +8,11 @@
     
 }
 
+#enteteArt{
+    text-align: left;
+    color: red;
+}
+
 #txtcommentaire{
     background-color: white;
     color: black;

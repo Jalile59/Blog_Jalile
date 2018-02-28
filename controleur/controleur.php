@@ -85,7 +85,8 @@ function AddArticle($NameArticle, $categorie, $Dirphoto, $content, $chapo, $aute
             'content' => $content,
             'user_iduser'=> $user_iduser,
             'chapo'=> $chapo,
-            'Auteur'=> $auteur
+            'Auteur'=> $auteur,
+            
         ];
 
         $article = new Article($data);
@@ -93,17 +94,21 @@ function AddArticle($NameArticle, $categorie, $Dirphoto, $content, $chapo, $aute
                                                         ///////// probleme si pas de "file"
         if ($CheckFile){
 
+
+
+
+
+        }else{
+            
+        }
+        
         $manager = new ArticleManager();
 
         $manager->add($article);
-
+        
         header('Location: index.php?action=article');
-
         exit();
 
-        }else{
-                                    ////////////// Ajouter si upload fichier NOKS
-        }
     }
 
 }
@@ -164,18 +169,19 @@ function dropArticle($id){
     
 }
 
-function updateArticle ($NameArticle, $categorie, $Dirphoto, $content, $id){
+function updateArticle ($NameArticle, $categorie, $Dirphoto, $content, $chapo, $auteur,$idArticle){
  
     $user_iduser= $_SESSION['Id']; 
     $date = (date('Y-m-d'));
     
     $data = [
-    'NameArticle' =>$NameArticle,
-    'Categorie' => $categorie,
-    'content' => $content,
-    'user_iduser'=> $user_iduser,
-    'idArticle'=>$id,
-    'DateModificationArticle'=> $date
+        'NameArticle' =>$NameArticle,
+        'Categorie' => $categorie,
+        'content' => $content,
+        'user_iduser'=> $user_iduser,
+        'chapo'=> $chapo,
+        'Auteur'=> $auteur,
+        'idArticle'=>$idArticle
     ];
     
     

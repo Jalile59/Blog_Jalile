@@ -96,8 +96,9 @@ class ArticleManager{
     
     public function update(Article $article){
         
-    $q = $this->_db->prepare('UPDATE Article SET NameArticle =:NameArticle, Categorie =:Categorie, Dirphoto =:Dirphoto, user_iduser =:user_iduser, dateModificationArticle =:dateModificationArticle, Content =:Content, Chapo=:Chapo WHERE idArticle=:idArticle, Auteur =:Auteur');
+    $q = $this->_db->prepare('UPDATE Article SET NameArticle =:NameArticle, Categorie =:Categorie, Dirphoto =:Dirphoto, user_iduser =:user_iduser, dateModificationArticle =:dateModificationArticle, Content =:Content, Chapo=:Chapo, Auteur =:Auteur WHERE idArticle=:idArticle');
         
+//    die(var_dump($article));
         
     $q->bindValue(':NameArticle', $article->getNameArticle());
     $q->bindValue(':Categorie', $article->getCategorie());

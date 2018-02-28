@@ -172,8 +172,12 @@ class Article{
             }
             
         }
-    } else {   
-            
+    } else {
+        
+        $destination = './public/img/product-fullsize.jpg';
+          
+        $this->_Dirphoto = $destination; 
+        
         return FALSE;
     }
         

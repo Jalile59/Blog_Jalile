@@ -65,7 +65,7 @@ if (isset($_GET['action'])){
         
     }elseif ($_GET['action']=='UpdateArticle') {
         
-        $up = updateArticle($_POST['inputArticleTitre'], $_POST['inputArticleGatégorie'], $Dirphoto, $_POST['inputArticleContent'], $_GET['Articleid']);
+        $up = updateArticle($_POST['inputArticleTitre'], $_POST['inputArticleGatégorie'], $_POST['inputArticleTitre'], $_POST['inputArticleContent'], $_POST['inputChapo'], $_POST['inputArticleAuteur'], $_GET['Articleid']);
         
     }elseif ($_GET['action']=='Inscription') {
         
