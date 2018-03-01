@@ -98,7 +98,6 @@ function dropArticle($idarticle)
     if ($requete) {
         header('Location: index.php?action=article');
         
-        exit();
     } else {
         echo 'erreur lors de la suppression de l article';
     }

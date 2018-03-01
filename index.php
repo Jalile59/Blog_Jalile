@@ -55,7 +55,7 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action']=='connect') {
         callConnect($twig);
     } elseif ($_GET['action']=='login') {
-        login($_POST['email'], $_POST['password'], $twig);
+        login(htmlspecialchars($_POST['email']),htmlspecialchars( $_POST['password']), $twig);
     } elseif ($_GET['action']=='addcommentaire') {
         $requete = addcommentaire($_POST['commentaire'], $_GET['idarticle']);
     } elseif ($_GET['action']=='destroy') {
