@@ -56,12 +56,12 @@ class ArticleManager
         
         $req->bindValue(':idArticle', $idarticle);
         
-        $data = $req->execute();
+         $req->execute();
 
         
         $data = $req -> fetch(PDO::FETCH_ASSOC);
         
-        $data = $Article [] = new Article($data);
+         $Article [] = new Article($data);
         
         
 
@@ -76,7 +76,7 @@ class ArticleManager
         
         
         while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
-            $data= $Articles [] = new Article($data);
+            $Articles [] = new Article($data);
         }
      
         return $Articles;

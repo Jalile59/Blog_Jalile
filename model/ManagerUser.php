@@ -50,16 +50,14 @@ class ManagerUser
     {
         
         // recupére row
-        
-        $user = (int) $user;
-        
+                
         $req = $this -> _db ->prepare('SELECT * FROM user WHERE user =:user');
         
         $req->bindValue(':user', $user);
         
-        $data = $req->execute();
+        $req->execute();
         
-        $data = $req -> fetch(PDO::FETCH_ASSOC);
+        $req -> fetch(PDO::FETCH_ASSOC);
         
         $data = $user [] = new User($data);
         
@@ -77,16 +75,16 @@ class ManagerUser
         
         $req->bindValue(':EmailUser', $emailuser);
         
-        $data = $req->execute();
+        $req->execute();
         
         
-        $data = $req -> fetch(PDO::FETCH_ASSOC);
+        $req -> fetch(PDO::FETCH_ASSOC);
         
         $data = $user [] = new User($data);
         
         
 
-        return $data;
+        return $user;
     }
     
     public function getListUser()
@@ -95,7 +93,7 @@ class ManagerUser
         
         
         
-        while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
+        while ($req->fetch(PDO::FETCH_ASSOC)) {
             $data= $Articles [] = new Article($data);
         }
      

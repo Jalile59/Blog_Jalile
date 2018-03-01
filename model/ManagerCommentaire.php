@@ -54,12 +54,12 @@ class ManagerCommentaire
         
         $req->bindValue(':idCommentaire', $idcommentaire);
         
-        $data = $req->execute();
+        $req->execute();
 
         
         $data = $req -> fetch(PDO::FETCH_ASSOC);
         
-        $data= $Commentaires [] = new Commentaire($data);
+        $Commentaires [] = new Commentaire($data);
         
 
         
@@ -75,7 +75,7 @@ class ManagerCommentaire
         $data = $req->execute();
 
         
-        while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
+        while ($req->fetch(PDO::FETCH_ASSOC)) {
             $data= $Commentaires [] = new Commentaire($data);
         }
      

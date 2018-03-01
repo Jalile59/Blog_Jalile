@@ -47,7 +47,7 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action']=='ViewModify') {
         $viewModify = viewModifyArticle($twig, $_GET['Articleid']);
     } elseif ($_GET['action']=='UpdateArticle') {
-        $up = updateArticle(htmlspecialchars($_POST['inputArticleTitre']), htmlspecialchars($_POST['inputArticleGatégorie']), htmlspecialchars($_POST['inputArticleTitre']), $_POST['inputArticleContent'], $_POST['inputChapo'], htmlspecialchars($_POST['inputArticleAuteur']), htmlspecialchars($_GET['Articleid']));
+        $up = updateArticle(htmlspecialchars($_POST['inputArticleTitre']), htmlspecialchars($_POST['inputArticleGatégorie']), $_POST['inputArticleContent'], $_POST['inputChapo'], htmlspecialchars($_POST['inputArticleAuteur']), htmlspecialchars($_GET['Articleid']));
     } elseif ($_GET['action']=='Inscription') {
         callInscription($twig);
     } elseif ($_GET['action']=='AddInscription') {

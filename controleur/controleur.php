@@ -115,7 +115,8 @@ function updateArticle($namearticle, $categorie, $content, $chapo, $auteur, $ida
         'useriduser'=> $user_iduser,
         'chapo'=> $chapo,
         'Auteur'=> $auteur,
-        'idArticle'=>$idarticle
+        'idArticle'=>$idarticle,
+        'dateModificationArticle'=> $date
     ];
     
     
@@ -125,6 +126,8 @@ function updateArticle($namearticle, $categorie, $content, $chapo, $auteur, $ida
     $article->checkDirphoto($_FILE);
     
     $uparticle= new ArticleManager();
+    
+    
     $uparticle->update($article);
     
     header('Location: index.php?action=article');
@@ -221,7 +224,7 @@ function destroy()
     exit();
 }
 
-function validationCommentaire($twig, $idCommentaire, $idarticle)
+function validationCommentaire($idCommentaire, $idarticle)
 {
     $requete= new ManagerCommentaire();
     $requete->validationCommentaire($idCommentaire);
@@ -229,10 +232,10 @@ function validationCommentaire($twig, $idCommentaire, $idarticle)
     header('location: ./index.php?action=viewarticle&idarticle='.$idarticle);
 }
 
-function deleteCommentaire($twig, $idCommentaire, $idarticle)
+function deleteCommentaire($idCommentaire, $idarticle)
 {
     $drop = new ManagerCommentaire();
-    $requete = $drop->delete($idCommentaire);
+    $drop->delete($idCommentaire);
     
     header('location: ./index.php?action=viewarticle&idarticle='.$idarticle);
 }
@@ -266,7 +269,7 @@ function updateCommentaire($commentaire, $idCommentaire, $idarticle)
 {
     $data = new ManagerCommentaire;
     
-    $requete = $data->updateCommentaire($commentaire, $idCommentaire);
+    $data->updateCommentaire($commentaire, $idCommentaire);
     
     header('location: ./index.php?action=viewarticle&idarticle='.$idarticle);
 }
