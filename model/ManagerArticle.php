@@ -12,7 +12,7 @@ class ArticleManager
     
     public function __construct()
     {
-        $this->setDb($db);
+        $this->setDb($bdd);
     }
     
     public function addArticle(Article $article)
@@ -51,8 +51,6 @@ class ArticleManager
     {
         
         // recupére row
-        
-        $id = (int) $id;
         
         $req = $this -> _db ->prepare('SELECT * FROM Article WHERE idArticle =:idArticle');
         
@@ -108,9 +106,9 @@ class ArticleManager
     
     public function setDb()
     {
-        $db = new PDO('mysql:host=localhost;dbname=BlogJalile', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $bdd = new PDO('mysql:host=localhost;dbname=BlogJalile', 'root', '');
+        $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-        $this->_db =$db;
+        $this->_db =$bdd;
     }
 }

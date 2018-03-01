@@ -12,7 +12,7 @@ class ManagerUser
     
     public function __construct()
     {
-        $this->setDb($db);
+        $this->setDb($bdd);
     }
     
     public function add(User $user)
@@ -122,10 +122,10 @@ class ManagerUser
     
     public function setDb()
     {
-        $db = new PDO('mysql:host=localhost;dbname=BlogJalile', 'root', '');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $bdd = new PDO('mysql:host=localhost;dbname=BlogJalile', 'root', '');
+        $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-        $this->_db =$db;
+        $this->_db =$bdd;
     }
     
     public function checklogin($emailuser, $mdpuser)
