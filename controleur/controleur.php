@@ -10,17 +10,6 @@ require './model/model_old.php';
  */
 
 
-
-function callAddArticle()
-{
-    echo $twig->render('newArticle.twig');
-}
-
-function callHome($twig)
-{
-    echo $twig->render('home.twig');
-}
-
 function callInscription($twig)
 {
     if ($_SESSION['Nom']) {
@@ -149,10 +138,10 @@ function updateArticle($namearticle, $categorie, $content, $chapo, $auteur, $ida
     
     $article = new Article($data);
     
-     $article->checkDirphoto($_FILE);
+    $article->checkDirphoto($_FILE);
     
     $uparticle= new ArticleManager();
-     $uparticle->update($article);
+    $uparticle->update($article);
     
     header('Location: index.php?action=article');
 }
@@ -184,7 +173,7 @@ function addinscription($name, $surename, $pseudo, $mail, $mdp)
         
   
     $addinscription = new ManagerUser();
-     $addinscription->add($inscription);
+    $addinscription->add($inscription);
  
     header('Location:index.php?action=home');
 
@@ -275,7 +264,6 @@ function modifyCommentaire($twig, $idCommentaire, $idarticle)
         commentaire=>$q,
         modifCommentaire=>$modifcommentaire
     ));
-    
 }
 
 
