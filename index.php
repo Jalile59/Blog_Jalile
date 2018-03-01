@@ -37,7 +37,7 @@ if (isset($_GET['action'])) {
     if ($_GET['action']== 'article') {
         $list = getListArticle($twig);
     } elseif ($_GET['action'] == 'ViewAddarticle') {
-        echo $twig->render('newArticle.twig');
+        echo $twig->render('newArticle.twig'); // WPCS: XSS OK
     } elseif ($_GET['action']=='AddArticle') {
         $add = addarticle($_POST['inputArticleTitre'], $_POST['inputArticleGatégorie'], $_POST['inputArticleContent'], $_POST['inputChapo'], $_POST['inputArticleAuteur']);
     } elseif ($_GET['action']=='viewarticle') {
@@ -61,7 +61,7 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action']=='destroy') {
         $requete = destroy($twig);
     } elseif ($_GET['action']=='home') {
-        echo $twig->render('home.twig');
+        echo $twig->render('home.twig'); // WPCS: XSS OK
     } elseif ($_GET['action']== 'valideCommentaire') {
         $requete = validationCommentaire($twig, $_GET['idCommentaire'], $_GET['idarticle']);
     } elseif ($_GET['action']=='suppCommentaire') {

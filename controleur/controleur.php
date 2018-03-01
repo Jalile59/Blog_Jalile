@@ -46,7 +46,7 @@ function addarticle($namearticle, $categorie, $content, $chapo, $auteur)
     
     // Si erreurs
     if (!empty($error)) {
-        $twig->render('newArticle.twig', array('errors' => $errors, 'postParams'=> $_POST)); // WPCS: XSS OK
+        $twig->render('newArticle.twig', array('errors' => $errors, 'postParams'=> $_POST)); 
     } else {
         $data = [
             'NameArticle' =>$namearticle,
