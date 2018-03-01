@@ -17,16 +17,16 @@ class ManagerCommentaire
     
     public function add(Commentaire $commentaire)
     {
-        $q = $this->_db->prepare('INSERT INTO Commentaire(ContentCommentaire, CreateDate, user_iduser, Article_idArticle, Valide) VALUES (:ContentCommentaire, :CreateDate, :user_iduser, :Article_idArticle, :Valide)');
+        $req = $this->_db->prepare('INSERT INTO Commentaire(ContentCommentaire, CreateDate, user_iduser, Article_idArticle, Valide) VALUES (:ContentCommentaire, :CreateDate, :user_iduser, :Article_idArticle, :Valide)');
         
         
-        $q->bindValue(':ContentCommentaire', $commentaire->getContentCommentaire());
-        $q->bindValue(':CreateDate', $commentaire->getCreateDate());
-        $q->bindValue(':Valide', $commentaire->getValide());
-        $q->bindValue(':user_iduser', $commentaire->getUseriduser());
-        $q->bindValue(':Article_idArticle', $commentaire->getArticleidArticle());
+        $req->bindValue(':ContentCommentaire', $commentaire->getContentCommentaire());
+        $req->bindValue(':CreateDate', $commentaire->getCreateDate());
+        $req->bindValue(':Valide', $commentaire->getValide());
+        $req->bindValue(':user_iduser', $commentaire->getUseriduser());
+        $req->bindValue(':Article_idArticle', $commentaire->getArticleidArticle());
         
-        return $q->execute();
+        return $req->execute();
     }
     
     public function delete($idcommentaire)
@@ -34,11 +34,11 @@ class ManagerCommentaire
         
         // drop row
 
-        $q = $this -> _db -> prepare('DELETE FROM Commentaire WHERE idCommentaire =:idCommentaire');
+        $req = $this -> _db -> prepare('DELETE FROM Commentaire WHERE idCommentaire =:idCommentaire');
         
-        $q->bindValue(':idCommentaire', $idcommentaire);
+        $req->bindValue(':idCommentaire', $idcommentaire);
         
-        $data = $q->execute();
+        $data = $req->execute();
         
         return $data;
     }
@@ -50,14 +50,14 @@ class ManagerCommentaire
         
         $id = (int) $id;
         
-        $q = $this -> _db ->prepare('SELECT * FROM Commentaire WHERE idCommentaire =:idCommentaire');
+        $req = $this -> _db ->prepare('SELECT * FROM Commentaire WHERE idCommentaire =:idCommentaire');
         
-        $q->bindValue(':idCommentaire', $idcommentaire);
+        $req->bindValue(':idCommentaire', $idcommentaire);
         
-        $data = $q->execute();
+        $data = $req->execute();
 
         
-        $data = $q -> fetch(PDO::FETCH_ASSOC);
+        $data = $req -> fetch(PDO::FETCH_ASSOC);
         
         $data= $Commentaires [] = new Commentaire($data);
         
@@ -68,14 +68,14 @@ class ManagerCommentaire
     
     public function getListCommentaireByArticle($articleidarticle)
     {
-        $q = $this->_db->prepare('SELECT * FROM Commentaire WHERE Article_idArticle=:Article_idArticle');
+        $req = $this->_db->prepare('SELECT * FROM Commentaire WHERE Article_idArticle=:Article_idArticle');
         
-        $q->bindValue(':Article_idArticle', $articleidarticle);
+        $req->bindValue(':Article_idArticle', $articleidarticle);
         
-        $data = $q->execute();
+        $data = $req->execute();
 
         
-        while ($data = $q->fetch(PDO::FETCH_ASSOC)) {
+        while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
             $data= $Commentaires [] = new Commentaire($data);
         }
      
@@ -86,24 +86,24 @@ class ManagerCommentaire
     
     public function updateCommentaire($contentcommentaire, $idcommentaire)
     {
-        $q = $this->_db->prepare('UPDATE Commentaire SET  ContentCommentaire =:ContentCommentaire WHERE idCommentaire=:idCommentaire');
+        $req = $this->_db->prepare('UPDATE Commentaire SET  ContentCommentaire =:ContentCommentaire WHERE idCommentaire=:idCommentaire');
         
-        $q->bindValue(':ContentCommentaire', $contentcommentaire);
-        $q->bindValue(':idCommentaire', $idcommentaire);
+        $req->bindValue(':ContentCommentaire', $contentcommentaire);
+        $req->bindValue(':idCommentaire', $idcommentaire);
 
-        return $data = $q->execute();
+        return $data = $req->execute();
     }
     
     public function validationCommentaire($idcommentaire)
     {
-        $q = $this->_db->prepare('UPDATE Commentaire SET Valide =:Valide WHERE idCommentaire=:idCommentaire');
+        $req = $this->_db->prepare('UPDATE Commentaire SET Valide =:Valide WHERE idCommentaire=:idCommentaire');
         
         $value = 1;
         
-        $q->bindValue(':idCommentaire', $idcommentaire);
-        $q->bindValue(':Valide', $value);
+        $req->bindValue(':idCommentaire', $idcommentaire);
+        $req->bindValue(':Valide', $value);
         
-        return $data = $q->execute();
+        return $data = $req->execute();
     }
     
     public function setDb()

@@ -17,19 +17,19 @@ class ManagerUser
     
     public function add(User $user)
     {
-        $q = $this->_db->prepare('INSERT INTO user(NameUser, SurenameUser, Pseudo, EmailUser, MdpUser, PhotoUser, Statut ) VALUES (:NameUser, :SurenameUser, :Pseudo, :EmailUser, :MdpUser, :PhotoUser, :Statut)');
+        $req = $this->_db->prepare('INSERT INTO user(NameUser, SurenameUser, Pseudo, EmailUser, MdpUser, PhotoUser, Statut ) VALUES (:NameUser, :SurenameUser, :Pseudo, :EmailUser, :MdpUser, :PhotoUser, :Statut)');
         
         
-        $q->bindValue(':NameUser', $user->getNameuser());
-        $q->bindValue(':SurenameUser', $user->getSurenameUser());
-        $q->bindValue(':Pseudo', $user->getPseudo());
-        $q->bindValue(':EmailUser', $user->getEmailUser());
-        $q->bindValue(':MdpUser', $user->getMdpUser());
-        $q->bindValue(':PhotoUser', $user->getPhotoUser());
-        $q->bindValue(':Statut', $user->getStatut());
+        $req->bindValue(':NameUser', $user->getNameuser());
+        $req->bindValue(':SurenameUser', $user->getSurenameUser());
+        $req->bindValue(':Pseudo', $user->getPseudo());
+        $req->bindValue(':EmailUser', $user->getEmailUser());
+        $req->bindValue(':MdpUser', $user->getMdpUser());
+        $req->bindValue(':PhotoUser', $user->getPhotoUser());
+        $req->bindValue(':Statut', $user->getStatut());
         
         
-        return $q->execute();
+        return $req->execute();
     }
     
     public function delete($user)
@@ -37,11 +37,11 @@ class ManagerUser
         
         // drop row
 
-        $q = $this -> _db -> prepare('DELETE FROM user WHERE user =user');
+        $req = $this -> _db -> prepare('DELETE FROM user WHERE user =user');
         
-        $q->bindValue(':user', $user);
+        $req->bindValue(':user', $user);
         
-        $data = $q->execute();
+        $data = $req->execute();
         
         return $data;
     }
@@ -53,13 +53,13 @@ class ManagerUser
         
         $user = (int) $user;
         
-        $q = $this -> _db ->prepare('SELECT * FROM user WHERE user =:user');
+        $req = $this -> _db ->prepare('SELECT * FROM user WHERE user =:user');
         
-        $q->bindValue(':user', $user);
+        $req->bindValue(':user', $user);
         
-        $data = $q->execute();
+        $data = $req->execute();
         
-        $data = $q -> fetch(PDO::FETCH_ASSOC);
+        $data = $req -> fetch(PDO::FETCH_ASSOC);
         
         $data = $user [] = new User($data);
         
@@ -73,14 +73,14 @@ class ManagerUser
     
     public function getRowbyMail($emailuser)
     {
-        $q = $this -> _db ->prepare('SELECT * FROM user WHERE EmailUser =:EmailUser');
+        $req = $this -> _db ->prepare('SELECT * FROM user WHERE EmailUser =:EmailUser');
         
-        $q->bindValue(':EmailUser', $emailuser);
+        $req->bindValue(':EmailUser', $emailuser);
         
-        $data = $q->execute();
+        $data = $req->execute();
         
         
-        $data = $q -> fetch(PDO::FETCH_ASSOC);
+        $data = $req -> fetch(PDO::FETCH_ASSOC);
         
         $data = $user [] = new User($data);
         
@@ -91,11 +91,11 @@ class ManagerUser
     
     public function getListUser()
     {
-        $q = $this->_db->query('SELECT * FROM user');
+        $req = $this->_db->query('SELECT * FROM user');
         
         
         
-        while ($data = $q->fetch(PDO::FETCH_ASSOC)) {
+        while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
             $data= $Articles [] = new Article($data);
         }
      
@@ -106,18 +106,18 @@ class ManagerUser
     
     public function update(User $user)
     {
-        $q = $this->_db->prepare('UPDATE user SET NameUser =:NameUser, SurenameUser =:SurenameUser, Pseudo =:Pseudo, EmailUser =:EmailUser, MdpUser =:MdpUser, PhotoUser =:PhotoUser WHERE iduser=:iduser');
+        $req = $this->_db->prepare('UPDATE user SET NameUser =:NameUser, SurenameUser =:SurenameUser, Pseudo =:Pseudo, EmailUser =:EmailUser, MdpUser =:MdpUser, PhotoUser =:PhotoUser WHERE iduser=:iduser');
         
         
-        $q->bindValue(':NameUser', $user->getNameuser());
-        $q->bindValue(':SurenameUser', $user->setSurenameUser());
-        $q->bindValue(':Pseudo', $user->getPseudo());
-        $q->bindValue(':EmailUser', $user->getEmailUser());
-        $q->bindValue(':MdpUser', $user->getMdpUser());
-        $q->bindValue(':PhotoUser', $user->getPhotoUser());
-        $q->bindValue(':iduser', $user->getIduser());
+        $req->bindValue(':NameUser', $user->getNameuser());
+        $req->bindValue(':SurenameUser', $user->setSurenameUser());
+        $req->bindValue(':Pseudo', $user->getPseudo());
+        $req->bindValue(':EmailUser', $user->getEmailUser());
+        $req->bindValue(':MdpUser', $user->getMdpUser());
+        $req->bindValue(':PhotoUser', $user->getPhotoUser());
+        $req->bindValue(':iduser', $user->getIduser());
 
-        return $data = $q->execute();
+        return $data = $req->execute();
     }
     
     public function setDb()
@@ -130,15 +130,15 @@ class ManagerUser
     
     public function checklogin($emailuser, $mdpuser)
     {
-        $q = $this->_db->prepare('SELECT * FROM user WHERE EmailUser =:EmailUser AND MdpUser =:MdpUser');
+        $req = $this->_db->prepare('SELECT * FROM user WHERE EmailUser =:EmailUser AND MdpUser =:MdpUser');
         //$sql_login2 = ('SELECT * FROM user WHERE Nom="'.$Login.'" AND Mdp="'.$PASS.'"');
         
-        $q->bindValue(':EmailUser', $emailuser);
-        $q->bindValue(':MdpUser', $mdpuser);
+        $req->bindValue(':EmailUser', $emailuser);
+        $req->bindValue(':MdpUser', $mdpuser);
 
-        $q->execute();
+        $req->execute();
         
-        $data = $q->rowCount();
+        $data = $req->rowCount();
         
 
         if ($data >0) {

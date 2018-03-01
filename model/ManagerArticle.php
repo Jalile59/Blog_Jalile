@@ -17,19 +17,19 @@ class ArticleManager
     
     public function addArticle(Article $article)
     {
-        $q = $this->_db->prepare('INSERT INTO Article(NameArticle, Categorie, Dirphoto, user_iduser, Content, Chapo, Auteur) VALUES (:NameArticle, :Categorie, :Dirphoto, :user_iduser, :Content, :Chapo, :Auteur)');
+        $req = $this->_db->prepare('INSERT INTO Article(NameArticle, Categorie, Dirphoto, user_iduser, Content, Chapo, Auteur) VALUES (:NameArticle, :Categorie, :Dirphoto, :user_iduser, :Content, :Chapo, :Auteur)');
         
         
-        $q->bindValue(':NameArticle', $article->getNameArticle());
-        $q->bindValue(':Categorie', $article->getCategorie());
-        $q->bindValue(':Dirphoto', $article->getDirphoto());
-        $q->bindValue(':user_iduser', $article->getUseriduser());
-        $q->bindValue(':Content', $article->getContent());
-        $q->bindValue(':Chapo', $article->getChapo());
-        $q->bindValue(':Auteur', $article->getAuteur());
+        $req->bindValue(':NameArticle', $article->getNameArticle());
+        $req->bindValue(':Categorie', $article->getCategorie());
+        $req->bindValue(':Dirphoto', $article->getDirphoto());
+        $req->bindValue(':user_iduser', $article->getUseriduser());
+        $req->bindValue(':Content', $article->getContent());
+        $req->bindValue(':Chapo', $article->getChapo());
+        $req->bindValue(':Auteur', $article->getAuteur());
 
         
-        return $q->execute();
+        return $req->execute();
     }
     
     public function delete($idarticle)
@@ -37,12 +37,12 @@ class ArticleManager
         
         // drop row
 
-        $q = $this -> _db -> prepare('DELETE FROM Article WHERE idArticle =:idArticle');
+        $req = $this -> _db -> prepare('DELETE FROM Article WHERE idArticle =:idArticle');
         
-        $q->bindValue(':idArticle', $idarticle);
+        $req->bindValue(':idArticle', $idarticle);
         
         
-        $data = $q->execute();
+        $data = $req->execute();
         
         return $data;
     }
@@ -54,14 +54,14 @@ class ArticleManager
         
         $id = (int) $id;
         
-        $q = $this -> _db ->prepare('SELECT * FROM Article WHERE idArticle =:idArticle');
+        $req = $this -> _db ->prepare('SELECT * FROM Article WHERE idArticle =:idArticle');
         
-        $q->bindValue(':idArticle', $idarticle);
+        $req->bindValue(':idArticle', $idarticle);
         
-        $data = $q->execute();
+        $data = $req->execute();
 
         
-        $data = $q -> fetch(PDO::FETCH_ASSOC);
+        $data = $req -> fetch(PDO::FETCH_ASSOC);
         
         $data = $Article [] = new Article($data);
         
@@ -73,11 +73,11 @@ class ArticleManager
     
     public function getListArticle()
     {
-        $q = $this->_db->query('SELECT * FROM Article');
+        $req = $this->_db->query('SELECT * FROM Article');
         
         
         
-        while ($data = $q->fetch(PDO::FETCH_ASSOC)) {
+        while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
             $data= $Articles [] = new Article($data);
         }
      
@@ -88,22 +88,22 @@ class ArticleManager
     
     public function update(Article $article)
     {
-        $q = $this->_db->prepare('UPDATE Article SET NameArticle =:NameArticle, Categorie =:Categorie, Dirphoto =:Dirphoto, user_iduser =:user_iduser, dateModificationArticle =:dateModificationArticle, Content =:Content, Chapo=:Chapo, Auteur =:Auteur WHERE idArticle=:idArticle');
+        $req = $this->_db->prepare('UPDATE Article SET NameArticle =:NameArticle, Categorie =:Categorie, Dirphoto =:Dirphoto, user_iduser =:user_iduser, dateModificationArticle =:dateModificationArticle, Content =:Content, Chapo=:Chapo, Auteur =:Auteur WHERE idArticle=:idArticle');
         
         
-        $q->bindValue(':NameArticle', $article->getNameArticle());
-        $q->bindValue(':Categorie', $article->getCategorie());
-        $q->bindValue(':Dirphoto', $article->getDirphoto());
-        $q->bindValue(':user_iduser', $article->getUseriduser());
-        $q->bindValue(':Content', $article->getContent());
-        $q->bindValue(':dateModificationArticle', $article->getDateModificationArticle());
-        $q->bindValue(':idArticle', $article->getIdArticle());
-        $q->bindValue(':Chapo', $article->getChapo());
-        $q->bindValue(':Auteur', $article->getAuteur());
+        $req->bindValue(':NameArticle', $article->getNameArticle());
+        $req->bindValue(':Categorie', $article->getCategorie());
+        $req->bindValue(':Dirphoto', $article->getDirphoto());
+        $req->bindValue(':user_iduser', $article->getUseriduser());
+        $req->bindValue(':Content', $article->getContent());
+        $req->bindValue(':dateModificationArticle', $article->getDateModificationArticle());
+        $req->bindValue(':idArticle', $article->getIdArticle());
+        $req->bindValue(':Chapo', $article->getChapo());
+        $req->bindValue(':Auteur', $article->getAuteur());
 
 
 
-        return $data = $q->execute();
+        return $data = $req->execute();
     }
     
     public function setDb()
