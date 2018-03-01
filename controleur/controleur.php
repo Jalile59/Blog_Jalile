@@ -16,12 +16,6 @@ function callAddArticle()
     echo $twig->render('newArticle.twig');
 }
 
-
-function callArticle()
-{
-    echo $twig->render('article.twig');
-}
-
 function callHome($twig)
 {
     echo $twig->render('home.twig');
@@ -88,7 +82,6 @@ function addarticle($namearticle, $categorie, $content, $chapo, $auteur)
         $manager->addArticle($article);
         
         header('Location: index.php?action=article');
-        exit();
     }
 }
 
@@ -123,10 +116,10 @@ function viewArticle($twig, $idarticle)
                                                ));
 }
 
-function dropArticle($id)
+function dropArticle($idarticle)
 {
     $drop = new ArticleManager();
-    $requete = $drop->delete($id);
+    $requete = $drop->delete($idarticle);
     
     if ($requete) {
         header('Location: index.php?action=article');
@@ -137,7 +130,7 @@ function dropArticle($id)
     }
 }
 
-function updateArticle($aamearticle, $categorie, $dirphoto, $content, $chapo, $auteur, $idarticle)
+function updateArticle($namearticle, $categorie, $content, $chapo, $auteur, $idarticle)
 {
     $user_iduser= $_SESSION['Id'];
     $date = (date('Y-m-d'));
@@ -156,10 +149,10 @@ function updateArticle($aamearticle, $categorie, $dirphoto, $content, $chapo, $a
     
     $article = new Article($data);
     
-    $CheckFile = $article->checkDirphoto($_FILE);
+     $article->checkDirphoto($_FILE);
     
     $uparticle= new ArticleManager();
-    $requete = $uparticle->update($article);
+     $uparticle->update($article);
     
     header('Location: index.php?action=article');
 }
@@ -191,18 +184,18 @@ function addinscription($name, $surename, $pseudo, $mail, $mdp)
         
   
     $addinscription = new ManagerUser();
-    $requete = $addinscription->add($inscription);
+     $addinscription->add($inscription);
  
     header('Location:index.php?action=home');
 
     exit();
 }
 
-function login($email, $mdp, $twig)
+function login($email, $mdp)
 {
     $requete = new ManagerUser();
     
-    $q=$requete->checklogin($email, $mdp);
+    $requete->checklogin($email, $mdp);
     
     header('Location:index.php?action=home');
 
@@ -235,7 +228,7 @@ function addcommentaire($commentaire, $idarticle)
     exit();
 }
 
-function destroy($twig)
+function destroy()
 {
     session_destroy();
     
@@ -266,8 +259,7 @@ function modifyCommentaire($twig, $idCommentaire, $idarticle)
     
     $modifcommentaire = $requete->get($idCommentaire);
     
-    
-    
+     
     $dataArticle = new ArticleManager();
     
     $data=$dataArticle->get($idarticle);
