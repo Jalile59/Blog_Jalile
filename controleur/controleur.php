@@ -14,7 +14,7 @@ function callInscription($twig)
     if ($_SESSION['Nom']) {
         echo $twig->render('home.twig');
     } else {
-        echo $twig->render('inscription.twig');
+        echo $twig->render('inscription.twig'); // WPCS: XSS OK
     }
 }
 
