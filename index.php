@@ -34,24 +34,24 @@ $twig->addGlobal('session', $_SESSION);
 
 
 if (isset($_GET['action'])) {
-    if ($_GET['action']== 'article') {
+    if (htmlspecialchars($_GET['action'])== 'article') {
         $list = getListArticle($twig);
     } elseif ($_GET['action'] == 'ViewAddarticle') {
         echo $twig->render('newArticle.twig'); // WPCS: XSS OK
     } elseif ($_GET['action']=='AddArticle') {
-        $add = addarticle($_POST['inputArticleTitre'], $_POST['inputArticleGatégorie'], $_POST['inputArticleContent'], $_POST['inputChapo'], $_POST['inputArticleAuteur']);
+        $add = addarticle(htmlspecialchars($_POST['inputArticleTitre']), htmlspecialchars($_POST['inputArticleGatégorie']), $_POST['inputArticleContent'], htmlspecialchars($_POST['inputChapo']), htmlspecialchars($_POST['inputArticleAuteur']));
     } elseif ($_GET['action']=='viewarticle') {
-        viewArticle($twig, $_GET['idarticle']);
+        viewArticle($twig, htmlspecialchars($_GET['idarticle']));
     } elseif ($_GET['action']=='dropArticle') {
-        $drop = dropArticle($_GET['id']);
+        $drop = dropArticle(htmlspecialchars($_GET['id']));
     } elseif ($_GET['action']=='ViewModify') {
         $viewModify = viewModifyArticle($twig, $_GET['Articleid']);
     } elseif ($_GET['action']=='UpdateArticle') {
-        $up = updateArticle($_POST['inputArticleTitre'], $_POST['inputArticleGatégorie'], $_POST['inputArticleTitre'], $_POST['inputArticleContent'], $_POST['inputChapo'], $_POST['inputArticleAuteur'], $_GET['Articleid']);
+        $up = updateArticle(htmlspecialchars($_POST['inputArticleTitre']), htmlspecialchars($_POST['inputArticleGatégorie']), htmlspecialchars($_POST['inputArticleTitre']), $_POST['inputArticleContent'], $_POST['inputChapo'], htmlspecialchars($_POST['inputArticleAuteur']), htmlspecialchars($_GET['Articleid']));
     } elseif ($_GET['action']=='Inscription') {
         callInscription($twig);
     } elseif ($_GET['action']=='AddInscription') {
-        $addinscrip = addinscription($_POST['Name'], $_POST['Surename'], $_POST['Pseudo'], $_POST['Mail'], $_POST['Psw']);
+        $addinscrip = addinscription(htmlspecialchars($_POST['Name']),htmlspecialchars($_POST['Surename']), htmlspecialchars($_POST['Pseudo']), htmlspecialchars($_POST['Mail']), htmlspecialchars($_POST['Psw']));
     } elseif ($_GET['action']=='connect') {
         callConnect($twig);
     } elseif ($_GET['action']=='login') {
