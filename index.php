@@ -68,7 +68,7 @@ if (isset($_GET['action'])) {
         $requete = deleteCommentaire($twig, $_GET['idCommentaire'], $_GET['idarticle'], $_GET['idarticle']);
     } elseif ($_GET['action']=='modifyCommentaire') {
         $requete = modifyCommentaire($twig, $_GET['idCommentaire'], $_GET['idarticle']);
-    } elseif ($_GET['action']=='upComentaire') {
+    } elseif (htmlspecialchars($_GET['action'])=='upComentaire') {
         
 //        echo $_POST['commentaire'], $_GET['idCommentaire'], $_GET['idarticle'];
 //        die;
