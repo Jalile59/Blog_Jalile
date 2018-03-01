@@ -12,7 +12,7 @@ require './model/ManagerArticle.php';
 function callInscription($twig)
 {
     if ($_SESSION['Nom']) {
-        echo $twig->render('home.twig');
+        echo $twig->render('home.twig'); // WPCS: XSS OK
     } else {
         echo $twig->render('inscription.twig'); // WPCS: XSS OK
     }
@@ -21,9 +21,9 @@ function callInscription($twig)
 function callConnect($twig)
 {
     if ($_SESSION['Nom']) {
-        echo $twig->render('home.twig');
+        echo $twig->render('home.twig');    // WPCS: XSS OK
     } else {
-        echo $twig->render('connection.twig');
+        echo $twig->render('connection.twig');  // WPCS: XSS OK
     }
 }
 
@@ -46,7 +46,7 @@ function addarticle($namearticle, $categorie, $content, $chapo, $auteur)
     
     // Si erreurs
     if (!empty($error)) {
-        $twig->render('newArticle.twig', array('errors' => $errors, 'postParams'=> $_POST));
+        $twig->render('newArticle.twig', array('errors' => $errors, 'postParams'=> $_POST)); // WPCS: XSS OK
     } else {
         $data = [
             'NameArticle' =>$namearticle,
@@ -83,7 +83,7 @@ function getListArticle($twig)
  
     
     
-    echo   $twig->render('article.twig', array(data =>$data));
+    echo   $twig->render('article.twig', array(data =>$data));  // WPCS: XSS OK
 }
 
 function viewArticle($twig, $idarticle)
@@ -99,7 +99,7 @@ function viewArticle($twig, $idarticle)
     
     
     
-    echo $twig->render('viewarticle.twig', array(data=>$data,
+    echo $twig->render('viewarticle.twig', array(data=>$data,   // WPCS: XSS OK                 
                                                 commentaire=>$q
                                                ));
 }
@@ -155,7 +155,7 @@ function viewModifyArticle($twig, $id)
     
     
     
-    echo $twig->render('modifyArticle.twig', array(data=>$data));
+    echo $twig->render('modifyArticle.twig', array(data=>$data));   // WPCS: XSS OK
 }
 
 function addinscription($name, $surename, $pseudo, $mail, $mdp)
@@ -258,7 +258,7 @@ function modifyCommentaire($twig, $idCommentaire, $idarticle)
     
     
        
-    echo $twig->render('viewarticleModifyCommentaire.twig', array(
+    echo $twig->render('viewarticleModifyCommentaire.twig', array(  // WPCS: XSS OK
         data=>$data,
         commentaire=>$q,
         modifCommentaire=>$modifcommentaire
