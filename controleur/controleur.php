@@ -33,21 +33,6 @@ function addarticle($namearticle, $categorie, $content, $chapo, $auteur)
 {
     $user_iduser= $_SESSION['Id'];
     
-    // Verificatiuon des champs postés
-    
-    $errors = array();
-    
-    if (empty($namearticle)) {
-        $errors[] = 'Veuillez renseigner le titre';
-    }
-    if (empty($content)) {
-        $errors[] = 'Veuillez renseigner le contenu';
-    }
-    
-    // Si erreurs
-    if (!empty($error)) {
-        $twig->render('newArticle.twig', array('errors' => $errors, 'postParams'=> $_POST)); 
-    } else {
         $data = [
             'NameArticle' =>$namearticle,
             'categorie' => $categorie,
@@ -59,8 +44,9 @@ function addarticle($namearticle, $categorie, $content, $chapo, $auteur)
         ];
 
         $article = new Article($data);
+        
         $CheckFile = $article->checkDirphoto($_FILE);
-        ///////// probleme si pas de "file"
+        
         if ($CheckFile) {
         } else {
         }
@@ -71,7 +57,7 @@ function addarticle($namearticle, $categorie, $content, $chapo, $auteur)
         
         header('Location: index.php?action=article');
     }
-}
+
 
 function getListArticle($twig)
 {
@@ -179,8 +165,19 @@ function addinscription($name, $surename, $pseudo, $mail, $mdp)
     exit();
 }
 
-function login($email, $mdp)
+function login($email, $mdp, $twig)
 {
+    
+    $error = checkfromlogin($email, $mdp);
+    
+    if ($error['mdp'] == 1 or $error['mdp'] == 1 ){
+        
+        echo $twig->render('connection.twig', array('data'=> $error));  // WPCS: XSS OK
+
+    }
+    
+//    die(var_dump($error));
+    
     $requete = new ManagerUser();
     
     $requete->checklogin($email, $mdp);
@@ -273,4 +270,25 @@ function updateCommentaire($commentaire, $idCommentaire, $idarticle)
     $requete = $data->updateCommentaire($commentaire, $idCommentaire);
     
     header('location: ./index.php?action=viewarticle&idarticle='.$idarticle);
+}
+
+function checkfromlogin($mail, $mdp)
+{   
+    
+    
+    if($mail){
+        $error ['mail'] = 0;
+    }else{
+        $error ['mail'] = 1;
+    }
+    
+    if($mdp){
+        $error ['mdp'] = 0;
+    }else{
+        $error ['mdp'] = 1;
+    }
+    
+    
+    
+    return $error;
 }

@@ -75,5 +75,5 @@ if (isset($_GET['action'])) {
         $requete = updateCommentaire($_POST['commentaire'], $_GET['idCommentaire'], $_GET['idarticle']);
     }
 } else {
-    echo $twig->render('home.twig');    // WPCS: XSS OK
+    echo $twig->render('home.twig'); // WPCS: XSS OK
 }
