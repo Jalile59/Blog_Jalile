@@ -10,8 +10,10 @@ require './model/ManagerArticle.php';
 
 
 function callInscription($twig)
-{
-    if ($_SESSION['Nom']) {
+{   
+    $nom =$_SESSION['Nom'];
+    
+    if ($nom) {
         echo $twig->render('home.twig'); // WPCS: XSS OK
     } else {
         echo $twig->render('inscription.twig'); // WPCS: XSS OK
@@ -20,7 +22,9 @@ function callInscription($twig)
 
 function callConnect($twig)
 {
-    if ($_SESSION['Nom']) {
+    $nom =$_SESSION['Nom'];
+    
+    if ($nom) {
         echo $twig->render('home.twig');    // WPCS: XSS OK
     } else {
         echo $twig->render('connection.twig');  // WPCS: XSS OK
@@ -35,7 +39,7 @@ function addarticle($namearticle, $categorie, $content, $chapo, $auteur, $twig)
    
     if ($error['namearticle']== 1 or $error['content']== 1 or $error['auteur']==1 or $error['chapo']==1){
         
-        echo $twig->render('newArticle.twig', array(data=>$error));
+        echo $twig->render('newArticle.twig', array(data=>$error)); // WPCS: XSS OK
         
     }else{
     

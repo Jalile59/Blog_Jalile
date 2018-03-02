@@ -80,11 +80,11 @@ class ManagerUser
         
         $data = $req -> fetch(PDO::FETCH_ASSOC);
         
-        $data = $user [] = new User($data);
+       $users = $user [] = new User($data);
         
         
 
-        return $data;
+        return $users;
     }
     
     public function getListUser()
