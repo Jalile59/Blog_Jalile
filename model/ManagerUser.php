@@ -78,13 +78,13 @@ class ManagerUser
         $req->execute();
         
         
-        $req -> fetch(PDO::FETCH_ASSOC);
+        $data = $req -> fetch(PDO::FETCH_ASSOC);
         
         $data = $user [] = new User($data);
         
         
 
-        return $user;
+        return $data;
     }
     
     public function getListUser()
@@ -138,18 +138,19 @@ class ManagerUser
         
         $data = $req->rowCount();
         
+        
 
         if ($data >0) {
+                       
             $userObj = new ManagerUser();
             $datas= $userObj->getRowbyMail($emailuser);
-            
-            
+
             $_SESSION['Nom']= $datas->getNameuser();
             $_SESSION['Mail']= $datas->getEmailUser();
             $_SESSION['Id'] = $datas->getIduser();
             $_SESSION['Prenom'] = $datas->getSurenameUser();
             $_SESSION['Statut'] = $datas->getStatut();
-            
+
             return true;
         } else {
             return false;

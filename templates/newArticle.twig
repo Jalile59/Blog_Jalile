@@ -7,15 +7,17 @@
             <div class="col-lg-8 col-lg-offset-2">
              
         
-                    <form method="POST" action="index.php?action=AddArticle" enctype="multipart/form-data">     
+                    <form method="POST" action="index.php?action=AddArticle" enctype="multipart/form-data">
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="inputEmail4">Titre</label>
-                      <input type="text" class="form-control" id="inputArticleTitre" name ="inputArticleTitre" placeholder="Titre" required>
+                      <input type="text" class="form-control" id="inputArticleTitre" name ="inputArticleTitre" placeholder="Titre" >
+                      <div>{% if data.namearticle == 1 %} <p style='color: red'> Veillez rentrer un titre !</p>{%endif%}</div>
                     </div>
                     <div class="form-group col-md-6">
                       <label for="">Auteur:</label>
-                      <input type="text" class="form-control" id="inputArticleTitre" name ="inputArticleAuteur" placeholder="Auteur" required>
+                      <input type="text" class="form-control" id="inputArticleTitre" name ="inputArticleAuteur" placeholder="Auteur" >
+                      {% if data.auteur == 1 %} <p style='color: red'> Veillez rentrer un auteur !</p>{%endif%}
                     </div>
                     <div class="form-group col-md-12">
                       <label for="inputPassword4">catégorie: </label>
@@ -26,11 +28,14 @@
                   </div>
                     <div class="form-group col-lg-12">
                       <label for="comment">Chapô:</label>
-                      <textarea class="form-control" rows="3" id="contents" name="inputChapo"> </textarea>
+                      <textarea class="form-control" rows="3" id="content" name="inputChapo"></textarea>
+                    {% if data.chapo == 1 %} <p style='color: red'> Veillez rentrer un chapo !</p>{%endif%}
+
                     </div>
                     <div class="form-group col-lg-12">
                       <label for="comment">Comment:</label>
                       <textarea class="form-control" rows="15" id="content" name="inputArticleContent"> </textarea>
+                      {% if data.content == 1 %} <p style='color: red'> Veillez rentrer du contenu !</p>{%endif%}
                     </div>
                   <div class="col-lg-2">
                     <label>Photo Article (max 1mo) : </label>

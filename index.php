@@ -39,7 +39,7 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action'] == 'ViewAddarticle') {
         echo $twig->render('newArticle.twig'); // WPCS: XSS OK
     } elseif ($_GET['action']=='AddArticle') {
-        $add = addarticle(htmlspecialchars($_POST['inputArticleTitre']), htmlspecialchars($_POST['inputArticleGatégorie']), $_POST['inputArticleContent'], htmlspecialchars($_POST['inputChapo']), htmlspecialchars($_POST['inputArticleAuteur']));
+        $add = addarticle($_POST['inputArticleTitre'], $_POST['inputArticleGatégorie'], $_POST['inputArticleContent'], $_POST['inputChapo'], $_POST['inputArticleAuteur'], $twig);
     } elseif ($_GET['action']=='viewarticle') {
         viewArticle($twig, htmlspecialchars($_GET['idarticle']));
     } elseif ($_GET['action']=='dropArticle') {

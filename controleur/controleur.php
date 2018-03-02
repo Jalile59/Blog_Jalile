@@ -29,8 +29,17 @@ function callConnect($twig)
 
 ///////////////////////////////////////////////////////////////////////////////
 
-function addarticle($namearticle, $categorie, $content, $chapo, $auteur)
-{
+function addarticle($namearticle, $categorie, $content, $chapo, $auteur, $twig)
+{   
+    $error = checkformArticle($namearticle, $content, $chapo, $auteur);
+   
+    if ($error['namearticle']== 1 or $error['content']== 1 or $error['auteur']==1 or $error['chapo']==1){
+
+        
+        echo $twig->render('newArticle.twig', array(data=>$error));
+        
+    }else{
+    
     $user_iduser= $_SESSION['Id'];
     
         $data = [
@@ -56,6 +65,8 @@ function addarticle($namearticle, $categorie, $content, $chapo, $auteur)
         $manager->addArticle($article);
         
         header('Location: index.php?action=article');
+        
+    }
     }
 
 
@@ -147,7 +158,7 @@ function viewModifyArticle($twig, $id)
 }
 
 function addinscription($name, $surename, $pseudo, $mail, $mdp)
-{
+{   
     $data = [
       'NameUser' => $name,
       'SurenameUser' => $surename,
@@ -164,7 +175,6 @@ function addinscription($name, $surename, $pseudo, $mail, $mdp)
  
     header('Location:index.php?action=home');
 
-    exit();
 }
 
 function login($email, $mdp, $twig)
@@ -178,12 +188,12 @@ function login($email, $mdp, $twig)
 
     }
     
-//    die(var_dump($error));
+  
     
     $requete = new ManagerUser();
     
     $requete->checklogin($email, $mdp);
-    
+
     header('Location:index.php?action=home');
 
     exit();
@@ -292,5 +302,34 @@ function checkfromlogin($mail, $mdp)
     
     
     
+    return $error;
+}
+
+function checkformArticle($namearticle, $content, $chapo, $auteur){
+    
+    
+    if($namearticle){
+        $error ['namearticle'] = 0; 
+    }else{
+        $error ['namearticle'] = 1;
+    }
+
+    if($content){
+        $error ['content'] = 0;
+    }else{
+        $error ['content'] = 1;
+    }
+
+    if($chapo){
+        $error ['chapo'] = 0;
+    }else{
+        $error ['chapo'] = 1;
+    }
+    
+    if($auteur){
+        $error ['auteur'] = 0;
+    }else{
+        $error ['auteur'] = 1;
+    }
     return $error;
 }

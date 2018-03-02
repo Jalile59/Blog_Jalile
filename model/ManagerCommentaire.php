@@ -13,6 +13,8 @@ class ManagerCommentaire
     public function __construct()
     {
         $this->setDb($bdd);
+        
+        
     }
     
     public function add(Commentaire $commentaire)
@@ -75,8 +77,8 @@ class ManagerCommentaire
         $data = $req->execute();
 
         
-        while ($req->fetch(PDO::FETCH_ASSOC)) {
-            $data= $Commentaires [] = new Commentaire($data);
+        while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
+            $Commentaires [] = new Commentaire($data);
         }
      
         return $Commentaires;
@@ -91,7 +93,7 @@ class ManagerCommentaire
         $req->bindValue(':ContentCommentaire', $contentcommentaire);
         $req->bindValue(':idCommentaire', $idcommentaire);
 
-        return $data = $req->execute();
+        return  $req->execute();
     }
     
     public function validationCommentaire($idcommentaire)
@@ -103,7 +105,7 @@ class ManagerCommentaire
         $req->bindValue(':idCommentaire', $idcommentaire);
         $req->bindValue(':Valide', $value);
         
-        return $data = $req->execute();
+        return  $req->execute();
     }
     
     public function setDb()
@@ -113,4 +115,5 @@ class ManagerCommentaire
         
         $this->_db =$bdd;
     }
+    
 }
