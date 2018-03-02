@@ -34,7 +34,6 @@ function addarticle($namearticle, $categorie, $content, $chapo, $auteur, $twig)
     $error = checkformArticle($namearticle, $content, $chapo, $auteur);
    
     if ($error['namearticle']== 1 or $error['content']== 1 or $error['auteur']==1 or $error['chapo']==1){
-
         
         echo $twig->render('newArticle.twig', array(data=>$error));
         
