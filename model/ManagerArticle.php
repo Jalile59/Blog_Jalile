@@ -101,7 +101,7 @@ class ArticleManager
 
 
 
-        return $data = $req->execute();
+        return  $req->execute();
     }
     
     public function setDb()

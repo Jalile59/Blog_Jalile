@@ -1,6 +1,7 @@
 {
     "name": "root/blog_jalile",
     "require": {
-        "twig/twig": "^2.4"
+        "phpmailer/phpmailer": "^6.0",
+        "twig/twig": "~2.0"
     }
 }

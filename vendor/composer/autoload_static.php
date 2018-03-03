@@ -19,6 +19,10 @@ class ComposerStaticInitdff9dea48c13e64a0cbd3aab61ab9e58
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
         ),
+        'P' => 
+        array (
+            'PHPMailer\\PHPMailer\\' => 20,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -29,6 +33,10 @@ class ComposerStaticInitdff9dea48c13e64a0cbd3aab61ab9e58
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
     );
 

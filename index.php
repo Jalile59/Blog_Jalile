@@ -73,6 +73,9 @@ if (isset($_GET['action'])) {
 //        echo $_POST['commentaire'], $_GET['idCommentaire'], $_GET['idarticle'];
 //        die;
         $requete = updateCommentaire($_POST['commentaire'], $_GET['idCommentaire'], $_GET['idarticle']);
+    }elseif ($_GET['action']=='sendmail') {
+        
+        sendmail($_POST['name'], $_POST['mail'], $_POST['phone'], $_POST['message']);
     }
 } else {
     echo $twig->render('home.twig'); // WPCS: XSS OK

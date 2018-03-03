@@ -1,7 +1,5 @@
 <?php
 
-require './model/ManagerArticle.php';
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -335,4 +333,64 @@ function checkformArticle($namearticle, $content, $chapo, $auteur){
         $error ['auteur'] = 1;
     }
     return $error;
+}
+
+function sendmail($nom, $mail, $numerotel, $message){
+    
+//    echo $nom, $mail, $numerotel, $message;
+//    die;
+    require './templates/mail.php';
+    
+    mailcontact($contenu);
+    
+    header('Location:index.php?action=home');
+
+    
+    
+}
+
+function mailcontact ($contenu){
+    
+    
+    $mail =  new PHPMailer\PHPMailer\PHPMailer(TRUE);   
+    try {
+        
+      //Server settings
+    $mail->SMTPDebug = 1;                                 // Enable verbose debug output
+    $mail->isSMTP();                                      // Set mailer to use SMTP
+    $mail->Host = 'smtp.free.fr';  // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = 'jalile59@free.fr';                 // SMTP username
+    $mail->Password = 'Nasseria59';                           // SMTP password
+   $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 465;                                    // TCP port to connect to
+
+    //Recipients
+    $mail->setLanguage('fr', '.\vendor\phpmailer\phpmailer\language');
+    $mail->setFrom('jalile59@free.fr', 'BlogJalile');
+    $mail->addAddress('jal.djellouli@gmail.com', 'Jalile');     // Add a recipient
+   // $mail->addAddress('nas.s@hotmail.fr');               // Name is optional
+    //$mail->addReplyTo('jalile59@free.fr', 'Information');
+    //$mail->addCC('');
+    //$mail->addBCC('');
+
+    //Attachmentsc
+    //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+    //Content
+    $mail->CharSet = 'UTF-8';
+    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->Subject = 'BlogJalile';
+    $mail->Body    = $contenu;
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+    $mail->send();
+    echo 'Message has been sent';
+} catch (Exception $e) {
+    echo 'Message could not be sent.';
+   // echo 'Mailer Error: ' . $mail->ErrorInfo;
+}
+    
+
 }
