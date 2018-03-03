@@ -18,13 +18,13 @@ and open the template in the editor.
         </p>
     
         <ul>
-            <li>Nom: <?php echo $nom ?> </li>
-            <li>Email:<?php echo $mail ?> </li>
-            <li>Téléphone: <?php echo $numerotel ?></li>
+            <li>Nom: <?php echo htmlspecialchars($nom) ?> </li>
+            <li>Email:<?php echo htmlspecialchars($mail) ?> </li>
+            <li>Téléphone: <?php echo htmlspecialchars($numerotel) ?></li>
         </ul>
         
         <a>Message:</a>
-        <p><?php $message ?></p>
+        <p><?php echo htmlspecialchars($message) ?></p>
         </table>
     </body>
 </html>
