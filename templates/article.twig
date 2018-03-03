@@ -12,37 +12,32 @@
                 </div>
             </div>
 
-            <div class="row">
 
-                <div id="slider" class="carousel slide" data-ride="carousel">
-
-                    <ol class="carousel-indicators">
-                        <li data-target="#slider" data-slide-to="0" class="active"></li>
-                        <li data-target="#slider" data-slide-to="1"></li>
-                    </ol>
-                </div>
-            </div>
                     <!-- Carousel items -->
-        <div class="carousel-inner">
+        <div class="card-group3">
 
-            <div class="item active">
+            <div class="item">
+                
                 <div class="row">
-                    {% for data in data %}		
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                            <div class="card text-center">
+                    		
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-3">
+                            {% for data in data %}
+                            <div class="card text-center" >
                                 <div id="enteteArt" class="col-md-6"><p>Auteur:{{data.Auteur}}</p></div><div class="col-md-6"><p>{{data.CreateDate|date('d-m-Y')}}</p></div>
-                                <img class="card-img-top" src="{{data.Dirphoto}}"  alt="" width="100%">
+                                <img class="card-img-top" src="{{data.Dirphoto}}"  alt="" width="70%">
                                 <div class="card-block">
                                     <h4 class="card-title">{{ data.NameArticle }}</h4>
                                     <p class="card-text">{{ data.Chapo }}.</p>
                                     <a class="btn btn-default" href="./index.php?action=viewarticle&idarticle={{data.idArticle}}">Lire plus..</a>
                                 </div>
+                            <div class="card-footer">
+                                <small class="text-muted">{% if data.dateModificationArticle %} Dernier mise à jour : {{data.dateModificationArticle}}</small>{% endif %}
                             </div>
+                            </div>
+{%endfor%}  
                         </div>
-                    {%endfor%}  
-
-
-                </div> <!-- row -->
+                        
+                    
             </div> <!-- item -->
         </div>
     </div>

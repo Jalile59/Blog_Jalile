@@ -1,5 +1,5 @@
 <?php
-
+require './model/ManagerArticle.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -119,7 +119,7 @@ function updateArticle($namearticle, $categorie, $content, $chapo, $auteur, $ida
 {
     $user_iduser= $_SESSION['Id'];
     $date = (date('Y-m-d'));
-    
+
     $data = [
         'NameArticle' =>$namearticle,
         'Categorie' => $categorie,
@@ -356,7 +356,7 @@ function mailcontact ($contenu){
     try {
         
       //Server settings
-    $mail->SMTPDebug = 1;                                 // Enable verbose debug output
+    $mail->SMTPDebug = 0;                                 // Enable verbose debug output
     $mail->isSMTP();                                      // Set mailer to use SMTP
     $mail->Host = 'smtp.free.fr';  // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication

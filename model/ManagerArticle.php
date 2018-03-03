@@ -71,7 +71,7 @@ class ArticleManager
     
     public function getListArticle()
     {
-        $req = $this->_db->query('SELECT * FROM Article');
+        $req = $this->_db->query('SELECT * FROM Article ORDER BY CreateDate DESC');
         
         
         
