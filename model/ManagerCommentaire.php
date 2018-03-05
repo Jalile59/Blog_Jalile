@@ -101,7 +101,7 @@ class ManagerCommentaire
         $req = $this->_db->prepare('UPDATE Commentaire SET Valide =:Valide WHERE idCommentaire=:idCommentaire');
         
         $value = 1;
-        
+               
         $req->bindValue(':idCommentaire', $idcommentaire);
         $req->bindValue(':Valide', $value);
         
@@ -116,4 +116,20 @@ class ManagerCommentaire
         $this->_db =$bdd;
     }
     
-}
+    public function getallcommentaire(){
+        
+        $req = $this->_db->prepare('SELECT * FROM `Commentaire` INNER JOIN `user` ON `user`.`iduser`= `Commentaire`.`user_iduser` JOIN `Article` ON `Commentaire`.`Article_idArticle`=`Article`.`idArticle`ORDER BY `Commentaire`.`CreateDate` DESC, `Commentaire`.`Valide`');
+        
+         $req->execute();
+                
+       
+        while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
+            
+            $Commentaires [] = new Commentaire($data);
+        }
+              
+    return $Commentaires;
+        
+    }
+    
+}   

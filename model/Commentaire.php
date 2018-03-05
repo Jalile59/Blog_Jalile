@@ -10,6 +10,8 @@ class Commentaire
     private $_useriduser;
     private $_articleidarticle;
     private $_valide;
+    private $_namearticle;
+    private $_nameuser;
 
 
 
@@ -56,6 +58,17 @@ class Commentaire
         return $this->_valide;
     }
     
+    public function getNameArticle(){
+        
+        return $this->_namearticle;
+    }
+    
+    public function getPseudo(){
+        
+        return $this->_pseudo;
+    }
+
+
 
 
 
@@ -101,5 +114,15 @@ class Commentaire
     public function setValide($valide)
     {
         $this->_valide = $valide;
+    }
+    
+    public function setNameArticle($namearticle){
+        
+        $this->_namearticle = $namearticle;
+    }
+    
+    public function setPseudo($pseudo){
+        
+        $this->_pseudo = $pseudo;
     }
 }

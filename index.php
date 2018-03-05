@@ -63,9 +63,9 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action']=='home') {
         echo $twig->render('home.twig'); // WPCS: XSS OK
     } elseif ($_GET['action']== 'valideCommentaire') {
-        $requete = validationCommentaire($twig, $_GET['idCommentaire'], $_GET['idarticle']);
+        $requete = validationCommentaire($_GET['idCommentaire'], $_GET['idarticle'],$_GET['redirection']);
     } elseif ($_GET['action']=='suppCommentaire') {
-        $requete = deleteCommentaire($twig, $_GET['idCommentaire'], $_GET['idarticle'], $_GET['idarticle']);
+        $requete = deleteCommentaire($_GET['idCommentaire'], $_GET['idarticle'], $_GET['idarticle'], $_GET['redirection']);
     } elseif ($_GET['action']=='modifyCommentaire') {
         $requete = modifyCommentaire($twig, $_GET['idCommentaire'], $_GET['idarticle']);
     } elseif (htmlspecialchars($_GET['action'])=='upComentaire') {
@@ -76,7 +76,12 @@ if (isset($_GET['action'])) {
     }elseif ($_GET['action']=='sendmail') {
         
         sendmail($_POST['name'], $_POST['mail'], $_POST['phone'], $_POST['message']);
+    }elseif ($_GET['action']=='listingCom') {
+        $data = adminCom($twig);
+    }elseif ($_GET['action']=='listingPost') {
+        adminPost($twig);
     }
+    
 } else {
     echo $twig->render('home.twig'); // WPCS: XSS OK
 }

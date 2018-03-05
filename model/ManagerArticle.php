@@ -71,7 +71,7 @@ class ArticleManager
     
     public function getListArticle()
     {
-        $req = $this->_db->query('SELECT * FROM Article ORDER BY CreateDate DESC');
+        $req = $this->_db->query('SELECT * FROM Article ORDER BY CreateDateArticle DESC');
         
         
         
@@ -110,5 +110,10 @@ class ArticleManager
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         $this->_db =$bdd;
+    }
+    
+    public function getlistAuteur(){
+        
+        $req = $this->prepare('SELCT * from ');
     }
 }

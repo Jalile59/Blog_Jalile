@@ -64,7 +64,7 @@
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.php?action=home">Bienvenue sur le blog  {{ session.Prenom}}</a>
+                <a class="navbar-brand" href="index.php?action=home">Bienvenue sur le blog  {{ session.Nom}}</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -87,11 +87,25 @@
                     {% endif %}
                     {%if  session.Nom%}
                     <li class="page-scroll">
-                        <a href="index.php?action=ViewAddarticle">New Article</a>
-                    </li>  
+                    </li>
+                    {% if session.Statut == 'Admin' %}
+                    <li>
+                        <div class="dropdown" style="margin-top: 10px">
+                            <button class="" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="" style="background: #2C3E50">
+                                <a> Administration </a>
+                            <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1"style=" background-color:#2C3E50;">
+                            <li><a href="index.php?action=listingPost" title="Lien 1">Listing Post</a></li>
+                            <li><a href="index.php?action=listingCom" title="Lien 1">Listing commentaire</a></li>
+                            <li><a href="index.php?action=ViewAddarticle">New Article</a></li>
+                        </div>
+                    </li>
+                {% endif %}
                     <li class="page-scroll">
                         <a href="index.php?action=destroy"><img src="../public/img/exit.png"></a>
                     </li> 
+                    
                 {% else %}
                     <li class="page-scroll">
                         <a href="index.php?action=Inscription">Inscription</a>
@@ -100,6 +114,7 @@
                         <a href="index.php?action=connect">Connection</a>
                     </li>
                 {% endif %}
+                
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

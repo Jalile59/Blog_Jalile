@@ -10,7 +10,7 @@ class Article
     private $_dirphoto;
     private $_datemodificationarticle;
     private $_content;
-    private $_useriduser;
+    private $_user_iduser;
     private $_createDate;
     private $_chapo;
     private $_auteur;
@@ -31,7 +31,7 @@ class Article
         return $this->_idarticle;
     }
     
-    public function getCreateDate()
+    public function getCreateDateArticle()
     {
         return $this->_createDate;
     }
@@ -65,9 +65,9 @@ class Article
         return $this->_datemodificationarticle;
     }
     
-    public function getUseriduser()
+    public function getUser_iduser()
     {
-        return $this->_useriduser;
+        return $this->_user_iduser;
     }
     
     public function getChapo()
@@ -106,7 +106,7 @@ class Article
         $this->_datemodificationarticle =$datemodificationarticle;
     }
     
-    public function setCreateDate($createDate)
+    public function setCreateDateArticle($createDate)
     {
         $this->_createDate=$createDate;
     }
@@ -131,9 +131,9 @@ class Article
         $this-> _content =$content;
     }
     
-    public function setUseriduser($useriduser)
+    public function setUser_iduser($useriduser)
     {
-        $this->_useriduser=$useriduser;
+        $this->_user_iduser=$useriduser;
     }
     
     

@@ -1,0 +1,52 @@
+{% extends "template.twig" %}
+
+
+{% block content %}
+    
+<div class="span7" style="margin: 150px; ">     
+    <div class="widget stacked widget-table action-table">
+
+        <div class="widget-header ">
+                    <i  class="icon-th-list"></i>
+                    <h3 style="padding-bottom: 5px;top: 0px;margin-top: 10px;">Gestionnaire commentaires</h3>
+        </div> <!-- /widget-header -->
+
+            <div class="widget-content">
+
+                <table class="table table-striped table-bordered">
+                        <thead>
+                                <tr>
+                                        <th>Article</th>
+                                        <th>Commentaire</th>
+                                        <th>Pseudo</th>
+                                        <th>Date création</th>
+                                        <th class="td-actions">Action</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                            {% for data in data %}
+                                <tr>
+                                        <td>{{ data.NameArticle }}</td>
+                                        
+                                        <td>{{data.ContentCommentaire}}</td>
+                                        <td>{{data.Pseudo}}</td>
+                                        <td>{{ data.CreateDate }}</td>
+                                                
+                                        <td class="td-actions">
+                                        {% if data.Valide %}{% else %}<a href="index.php?action=valideCommentaire&idarticle={{data.idArticle}}&idCommentaire={{ data.idCommentaire}}&redirection=listingcom"><img src="../public/img/valider.png"/></a>{% endif %}
+                                             <a href="index.php?action=modifyCommentaire&idarticle={{data.idArticle}}&idCommentaire={{ commentaire.idCommentaire}}&param=#comment"><img src="../public/img/bouton-modifier_318-77528.png"/></a>
+                                             <a href="index.php?action=suppCommentaire&idCommentaire={{ data.idCommentaire}}&idarticle={{data.idArticle}}&redirection=listingcom"><img src="../public/img/supprimer.png"/></a></a>
+                                        </td>
+                                </tr>
+                            {% endfor %}
+                                </tbody>
+                        </table>
+
+            </div> <!-- /widget-content -->
+
+        </div> <!-- /widget -->
+</div>  
+    
+    
+    
+{% endblock %}

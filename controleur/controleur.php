@@ -1,5 +1,6 @@
 <?php
 require './model/ManagerArticle.php';
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -93,7 +94,6 @@ function viewArticle($twig, $idarticle)
     $commentaire = new ManagerCommentaire();
     
     $q = $commentaire->getListCommentaireByArticle($idarticle);
-    
     
     
     
@@ -235,20 +235,42 @@ function destroy()
     exit();
 }
 
-function validationCommentaire($idCommentaire, $idarticle)
+function validationCommentaire($idCommentaire, $idarticle, $redirection)
 {
     $requete= new ManagerCommentaire();
-    $requete->validationCommentaire($idCommentaire);
+    $data =$requete->validationCommentaire($idCommentaire);
+    
+        if ($redirection = 'listingcom'){
+        
+        header('location: ./index.php?action=listingCom');
+    
+        
+    } else {
+        
+        header('location: ./index.php?action=viewarticle&idarticle='.$idarticle);
+
+    }
+    
+}
+
+function deleteCommentaire($idCommentaire, $idarticle, $redirection)
+{
+    $drop = new ManagerCommentaire();
+    
+    $drop->delete($idCommentaire);
+    
+    
+    
+    if ($redirection = 'listingcom'){
+        
+    header('location: ./index.php?action=listingCom');
+    
+        
+    }else{
     
     header('location: ./index.php?action=viewarticle&idarticle='.$idarticle);
 }
 
-function deleteCommentaire($idCommentaire, $idarticle)
-{
-    $drop = new ManagerCommentaire();
-    $drop->delete($idCommentaire);
-    
-    header('location: ./index.php?action=viewarticle&idarticle='.$idarticle);
 }
 
 function modifyCommentaire($twig, $idCommentaire, $idarticle)
@@ -391,6 +413,29 @@ function mailcontact ($contenu){
     echo 'Message could not be sent.';
    // echo 'Mailer Error: ' . $mail->ErrorInfo;
 }
-    
 
+}
+
+function adminCom($twig){
+    
+    $commentaire = new ManagerCommentaire();
+    
+    $data = $commentaire->getallcommentaire();
+    
+//    die(var_dump($data));
+    
+    echo $twig->render('listingCommentary.twig',array(data=>$data));
+    
+}
+
+function adminPost($twig){
+    
+    $post = new ArticleManager();
+    
+    $data = $post->getListArticle();
+    
+//    die(var_dump($data));
+    
+    echo $twig->render('listingPost.twig', array(data=>$data));
+    
 }
