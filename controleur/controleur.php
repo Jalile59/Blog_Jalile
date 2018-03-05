@@ -238,7 +238,8 @@ function destroy()
 function validationCommentaire($idCommentaire, $idarticle, $redirection)
 {
     $requete= new ManagerCommentaire();
-    $data =$requete->validationCommentaire($idCommentaire);
+    
+    $requete->validationCommentaire($idCommentaire);
     
         if ($redirection = 'listingcom'){
         

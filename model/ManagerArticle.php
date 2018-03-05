@@ -112,8 +112,5 @@ class ArticleManager
         $this->_db =$bdd;
     }
     
-    public function getlistAuteur(){
-        
-        $req = $this->prepare('SELCT * from ');
-    }
+
 }

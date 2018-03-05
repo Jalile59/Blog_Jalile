@@ -11,7 +11,7 @@ class Commentaire
     private $_articleidarticle;
     private $_valide;
     private $_namearticle;
-    private $_nameuser;
+    private $_pseudo;
 
 
 
