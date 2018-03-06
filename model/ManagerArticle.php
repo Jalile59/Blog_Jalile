@@ -23,7 +23,7 @@ class ArticleManager
         $req->bindValue(':NameArticle', $article->getNameArticle());
         $req->bindValue(':Categorie', $article->getCategorie());
         $req->bindValue(':Dirphoto', $article->getDirphoto());
-        $req->bindValue(':user_iduser', $article->getUseriduser());
+        $req->bindValue(':user_iduser', $article->getUser_iduser());
         $req->bindValue(':Content', $article->getContent());
         $req->bindValue(':Chapo', $article->getChapo());
         $req->bindValue(':Auteur', $article->getAuteur());
@@ -92,7 +92,7 @@ class ArticleManager
         $req->bindValue(':NameArticle', $article->getNameArticle());
         $req->bindValue(':Categorie', $article->getCategorie());
         $req->bindValue(':Dirphoto', $article->getDirphoto());
-        $req->bindValue(':user_iduser', $article->getUseriduser());
+        $req->bindValue(':user_iduser', $article->getUser_iduser());
         $req->bindValue(':Content', $article->getContent());
         $req->bindValue(':dateModificationArticle', $article->getDateModificationArticle());
         $req->bindValue(':idArticle', $article->getIdArticle());

@@ -70,7 +70,7 @@ class ManagerCommentaire
     
     public function getListCommentaireByArticle($articleidarticle)
     {
-        $req = $this->_db->prepare('SELECT * FROM Commentaire WHERE Article_idArticle=:Article_idArticle');
+        $req = $this->_db->prepare('SELECT * FROM Commentaire INNER JOIN user ON `user`.`iduser` = `Commentaire`.`user_iduser` AND `Commentaire`. `Article_idArticle`=:Article_idArticle');
         
         $req->bindValue(':Article_idArticle', $articleidarticle);
         
@@ -80,7 +80,6 @@ class ManagerCommentaire
         while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
             $Commentaires [] = new Commentaire($data);
         }
-     
         return $Commentaires;
     }
     

@@ -48,7 +48,7 @@ function addarticle($namearticle, $categorie, $content, $chapo, $auteur, $twig)
             'NameArticle' =>$namearticle,
             'categorie' => $categorie,
             'Content' => $content,
-            'useriduser'=> $user_iduser,
+            'user_iduser'=> $user_iduser,
             'chapo'=> $chapo,
             'Auteur'=> $auteur,
             
@@ -124,7 +124,7 @@ function updateArticle($namearticle, $categorie, $content, $chapo, $auteur, $ida
         'NameArticle' =>$namearticle,
         'Categorie' => $categorie,
         'Content' => $content,
-        'useriduser'=> $user_iduser,
+        'user_iduser'=> $user_iduser,
         'chapo'=> $chapo,
         'Auteur'=> $auteur,
         'idArticle'=>$idarticle,
@@ -241,7 +241,7 @@ function validationCommentaire($idCommentaire, $idarticle, $redirection)
     
     $requete->validationCommentaire($idCommentaire);
     
-        if ($redirection = 'listingcom'){
+        if ($redirection === 'listingcom'){
         
         header('location: ./index.php?action=listingCom');
     
@@ -262,7 +262,7 @@ function deleteCommentaire($idCommentaire, $idarticle, $redirection)
     
     
     
-    if ($redirection = 'listingcom'){
+    if ($redirection === 'listingcom'){
         
     header('location: ./index.php?action=listingCom');
     
@@ -425,7 +425,7 @@ function adminCom($twig){
     
 //    die(var_dump($data));
     
-    echo $twig->render('listingCommentary.twig',array(data=>$data));
+    echo $twig->render('listingCommentary.twig',array(data=>$data)); // WPCS: XSS OK
     
 }
 
@@ -437,6 +437,6 @@ function adminPost($twig){
     
 //    die(var_dump($data));
     
-    echo $twig->render('listingPost.twig', array(data=>$data));
+    echo $twig->render('listingPost.twig', array(data=>$data)); // WPCS: XSS OK
     
 }
