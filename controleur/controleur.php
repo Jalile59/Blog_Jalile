@@ -332,28 +332,28 @@ function checkfromlogin($mail, $mdp)
 function checkformArticle($namearticle, $content, $chapo, $auteur){
     
     
-    if($namearticle){
-        $error ['namearticle'] = 0; 
+    if(empty($namearticle)){
+        $error ['namearticle'] = 1; 
     }else{
-        $error ['namearticle'] = 1;
+        $error ['namearticle'] = 0;
     }
 
-    if($content){
-        $error ['content'] = 0;
-    }else{
+    if(empty($content)){
         $error ['content'] = 1;
+    }else{
+        $error ['content'] = 0;
     }
 
-    if($chapo){
-        $error ['chapo'] = 0;
-    }else{
+    if(empty($chapo)){
         $error ['chapo'] = 1;
+    }else{
+        $error ['chapo'] = 0;
     }
     
-    if($auteur){
-        $error ['auteur'] = 0;
-    }else{
+    if(empty($auteur)){
         $error ['auteur'] = 1;
+    }else{
+        $error ['auteur'] = 0;
     }
     return $error;
 }

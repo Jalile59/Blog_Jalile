@@ -70,8 +70,6 @@ if (isset($_GET['action'])) {
         $requete = modifyCommentaire($twig, $_GET['idCommentaire'], $_GET['idarticle']);
     } elseif (htmlspecialchars($_GET['action'])=='upComentaire') {
         
-//        echo $_POST['commentaire'], $_GET['idCommentaire'], $_GET['idarticle'];
-//        die;
         $requete = updateCommentaire($_POST['commentaire'], $_GET['idCommentaire'], $_GET['idarticle']);
     }elseif ($_GET['action']=='sendmail') {
         
