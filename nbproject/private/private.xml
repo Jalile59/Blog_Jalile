@@ -5,6 +5,9 @@
         <group>
             <file>file:/Y:/Blog_Jalile/controleur/controleur.php</file>
             <file>file:/Y:/Blog_Jalile/index.php</file>
+            <file>file:/Y:/Blog_Jalile/templates/viewarticle.twig</file>
+            <file>file:/Y:/Blog_Jalile/model/Commentaire.php</file>
+            <file>file:/Y:/Blog_Jalile/model/Article.php</file>
         </group>
     </open-files>
 </project-private>

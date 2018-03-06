@@ -137,7 +137,7 @@ class Article
     }
     
     
-    public function checkDirphoto($_FILE)
+    public function checkDirphoto($_FILE, $idarticle)
     {
         $extention = new SplFileInfo($_FILES['photoAticle']['name']);
     
@@ -158,9 +158,21 @@ class Article
                 }
             }
         } else {
-            $destination = './public/img/product-fullsize.jpg';
-          
-            $this->_dirphoto = $destination;
+            
+            $dirphoto = new ArticleManager();
+            $data = $dirphoto->getDirphotoByIdarticle($idarticle);
+            
+            
+            if ($data['Dirphoto'] != './public/img/product-fullsize.jpg') {
+
+                $this->_dirphoto = $data['Dirphoto'];
+                
+            } else {
+                $destination = './public/img/product-fullsize.jpg';
+                $this->_dirphoto = $destination;
+            }
+
+            
         
             return false;
         }

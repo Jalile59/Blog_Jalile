@@ -143,7 +143,7 @@ function updateArticle($namearticle, $categorie, $content, $chapo, $auteur, $ida
     
     $article = new Article($data);
     
-    $article->checkDirphoto($_FILE);
+    $article->checkDirphoto($_FILE,$idarticle);
     
     $uparticle= new ArticleManager();
     

@@ -104,6 +104,19 @@ class ArticleManager
         return  $req->execute();
     }
     
+    public function getDirphotoByIdarticle($idarticle){
+        
+        $req = $this->_db->prepare('SELECT `Dirphoto` FROM `Article`WHERE `idArticle`=:idArticle');
+        
+        $req->bindValue(':idArticle', $idarticle);
+        $req->execute();
+        
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+        
+        return $data;
+        
+    }
+    
     public function setDb()
     {
         $bdd = new PDO('mysql:host=localhost;dbname=BlogJalile', 'root', '');
