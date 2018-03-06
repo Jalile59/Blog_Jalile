@@ -23,76 +23,43 @@
 
 {% block twile %}
     <!-- Portfolio Grid Section -->
-    <section id="portfolio">
+  <!-- Portfolio Grid Section -->
+    <section id="portfolio" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Portfolio</h2>
+                    <h2>Articles</h2>
+                    <h3><i> les derniers publications</i></h3>
                     <hr class="star-primary">
                 </div>
             </div>
+            
             <div class="row">
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
+                {% for data in data %}
+                <div class="col-sm-4 portfolio-item zoom" ">
+                    <a href="./index.php?action=viewarticle&idarticle={{data.idArticle}}" class="portfolio-link" data-toggle="modal">
+                        
                         <div class="caption">
                             <div class="caption-content">
                                 <i class="fa fa-search-plus fa-3x"></i>
                             </div>
                         </div>
-                        <img src="../public/img/portfolio/cabin.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
+                        <p>{{ data.NameArticle }}</p>
+                        <img src="{{data.Dirphoto}}" class="img-responsive" alt="">
+                        <div  > 
+                            <div class="col-sm-4">
+                                <p>Auteur:{{ data.auteur }}</p>
                             </div>
+                            <div class="col-sm-8" style="text-align: right">
+                                <p>En ligne:{{ data.CreateDate|date('d-m-Y') }}</p>
                         </div>
-                        <img src="../public/img/portfolio/cake.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
                         </div>
-                        <img src="../public/img/portfolio/circus.png" class="img-responsive" alt="">
                     </a>
+
                 </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="../public/img/portfolio/game.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="../public/img/portfolio/safe.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="../public/img/portfolio/submarine.png" class="img-responsive" alt="">
-                    </a>
-                </div>
+              {%endfor%}  
             </div>
+            
         </div>
     </section>
 

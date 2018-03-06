@@ -61,7 +61,8 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action']=='destroy') {
         $requete = destroy($twig);
     } elseif ($_GET['action']=='home') {
-        echo $twig->render('home.twig'); // WPCS: XSS OK
+//        echo $twig->render('home.twig'); // WPCS: XSS OK
+        callHome($twig);
     } elseif ($_GET['action']== 'valideCommentaire') {
         $requete = validationCommentaire($_GET['idCommentaire'], $_GET['idarticle'],$_GET['redirection']);
     } elseif ($_GET['action']=='suppCommentaire') {

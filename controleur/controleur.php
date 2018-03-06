@@ -6,7 +6,15 @@ require './model/ManagerArticle.php';
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+function callHome($twig){
+    
+    $article = new ArticleManager();
+    
+    $data = $article->getListArticle();
+    
+    echo $twig->render('home.twig',array(data=>$data));
+    
+}
 
 function callInscription($twig)
 {   
