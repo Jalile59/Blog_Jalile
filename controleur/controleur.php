@@ -64,7 +64,9 @@ function addarticle($namearticle, $categorie, $content, $chapo, $auteur, $twig)
 
         $article = new Article($data);
         
-        $CheckFile = $article->checkDirphoto($_FILE);
+        $idarticle ='0';
+        
+        $CheckFile = $article->checkDirphoto($_FILE,$idarticle);
         
         if ($CheckFile) {
         } else {

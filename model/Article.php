@@ -162,14 +162,17 @@ class Article
             $dirphoto = new ArticleManager();
             $data = $dirphoto->getDirphotoByIdarticle($idarticle);
             
-            
-            if ($data['Dirphoto'] != './public/img/product-fullsize.jpg') {
-
-                $this->_dirphoto = $data['Dirphoto'];
+//            die(var_dump($data));
+            if ($data['Dirphoto'] == './public/img/product-fullsize.jpg' or empty($data['Dirphoto'])) {
                 
-            } else {
                 $destination = './public/img/product-fullsize.jpg';
                 $this->_dirphoto = $destination;
+                
+                
+            } else {
+
+                
+                $this->_dirphoto = $data['Dirphoto'];
             }
 
             
