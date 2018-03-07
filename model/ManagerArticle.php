@@ -117,6 +117,22 @@ class ArticleManager
         
     }
     
+    public function getLastarticle(){
+        
+    
+        $req = $this->_db->query('SELECT * FROM Article ORDER BY CreateDateArticle DESC LIMIT 6');
+        
+        
+        
+        while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
+            $Articles [] = new Article($data);
+        }
+     
+        return $Articles;
+    
+    }
+
+
     public function setDb()
     {
         $bdd = new PDO('mysql:host=localhost;dbname=BlogJalile', 'root', '');

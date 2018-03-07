@@ -43,7 +43,7 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action']=='viewarticle') {
         viewArticle($twig, htmlspecialchars($_GET['idarticle']));
     } elseif ($_GET['action']=='dropArticle') {
-        $drop = dropArticle(htmlspecialchars($_GET['id']));
+        $drop = dropArticle(htmlspecialchars($_GET['id']), $_GET['redirection']);
     } elseif ($_GET['action']=='ViewModify') {
         $viewModify = viewModifyArticle($twig, $_GET['Articleid']);
     } elseif ($_GET['action']=='UpdateArticle') {

@@ -10,9 +10,9 @@ function callHome($twig){
     
     $article = new ArticleManager();
     
-    $data = $article->getListArticle();
+    $data = $article->getLastarticle();
     
-    echo $twig->render('home.twig',array(data=>$data));
+    echo $twig->render('home.twig',array(data=>$data)); // WPCS: XSS OK
     
 }
 
@@ -112,16 +112,17 @@ function viewArticle($twig, $idarticle)
                                                ));
 }
 
-function dropArticle($idarticle)
+function dropArticle($idarticle, $redirection)
 {
     $drop = new ArticleManager();
     $requete = $drop->delete($idarticle);
-    
-    if ($requete) {
-        header('Location: index.php?action=article');
+
+    if ($redirection=='adminpost') {
+        header('Location: index.php?action=listingPost');
         
     } else {
-        echo 'erreur lors de la suppression de l article';
+        header('Location: index.php?action=article');    
+        
     }
 }
 
