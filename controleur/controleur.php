@@ -107,9 +107,10 @@ function viewArticle($twig, $idarticle)
     
     
     
-    echo $twig->render('viewarticle.twig', array(data=>$data,   // WPCS: XSS OK                 
-                                                commentaire=>$q
-                                               ));
+    echo $twig->render('viewarticle.twig', 
+            array('data'=>$data,   // WPCS: XSS OK                 
+            'commentaire'=>$q
+            ));
 }
 
 function dropArticle($idarticle, $redirection)

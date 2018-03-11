@@ -82,5 +82,5 @@ if (isset($_GET['action'])) {
     }
     
 } else {
-    echo $twig->render('home.twig'); // WPCS: XSS OK
+    callHome($twig); // WPCS: XSS OK
 }
