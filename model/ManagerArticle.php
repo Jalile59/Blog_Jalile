@@ -1,18 +1,19 @@
 <?php
 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-class ArticleManager
+class ManagerArticle extends ManagerConnect
 {
     private $_db;
     
     public function __construct()
     {
-        $this->setDb($bdd);
+        $this->_db = parent::__construct();
     }
     
     public function addArticle(Article $article)
@@ -130,16 +131,6 @@ class ArticleManager
      
         return $Articles;
     
-    }
-
-
-    public function setDb()
-    {
-        $bdd = new PDO('mysql:host=localhost;dbname=BlogJalile', 'root', '');
-        $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $this->_db =$bdd;
-    }
-    
+    }   
 
 }

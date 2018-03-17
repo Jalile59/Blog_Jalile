@@ -7,6 +7,8 @@ require ABSOLUTE_PATH. '/vendor/autoload.php';
 require ABSOLUTE_PATH. '/controleur/controleur.php';
 
 spl_autoload_register('custom_autoloader');
+
+
 function custom_autoloader($className)
 {
     $path      = ABSOLUTE_PATH .'/model/';

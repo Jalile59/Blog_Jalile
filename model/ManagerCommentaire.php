@@ -6,14 +6,13 @@
  * and open the template in the editor.
  */
 
-class ManagerCommentaire
+class ManagerCommentaire extends ManagerConnect
 {
     private $_db;
     
     public function __construct()
     {
-        $this->setDb($bdd);
-        
+        $this->_db = parent::__construct();
         
     }
     
@@ -75,12 +74,13 @@ class ManagerCommentaire
         $req->bindValue(':Article_idArticle', $articleidarticle);
         
         $data = $req->execute();
-
+        
+        $commentaires= '';
         
         while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
-            $Commentaires [] = new Commentaire($data);
+            $commentaires [] = new Commentaire($data);
         }
-        return $Commentaires;
+        return $commentaires;
     }
     
     
@@ -106,15 +106,7 @@ class ManagerCommentaire
         
         return  $req->execute();
     }
-    
-    public function setDb()
-    {
-        $bdd = new PDO('mysql:host=localhost;dbname=BlogJalile', 'root', '');
-        $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        $this->_db =$bdd;
-    }
-    
+      
     public function getallcommentaire(){
         
         $req = $this->_db->prepare('SELECT * FROM `Commentaire` INNER JOIN `user` ON `user`.`iduser`= `Commentaire`.`user_iduser` JOIN `Article` ON `Commentaire`.`Article_idArticle`=`Article`.`idArticle`ORDER BY `Commentaire`.`CreateDate` DESC, `Commentaire`.`Valide`');

@@ -1,5 +1,6 @@
 <?php
-require './model/ManagerArticle.php';
+
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -8,16 +9,18 @@ require './model/ManagerArticle.php';
  */
 function callHome($twig){
     
-    $article = new ArticleManager();
+    $article = new ManagerArticle();
     
     $data = $article->getLastarticle();
     
-    echo $twig->render('home.twig',array(data=>$data)); // WPCS: XSS OK
+    echo $twig->render('home.twig',array('data'=>$data)); // WPCS: XSS OK
     
 }
 
 function callInscription($twig)
 {   
+    $nom = 'null';
+    
     $nom =$_SESSION['Nom'];
     
     if ($nom) {
@@ -46,7 +49,7 @@ function addarticle($namearticle, $categorie, $content, $chapo, $auteur, $twig)
    
     if ($error['namearticle']== 1 or $error['content']== 1 or $error['auteur']==1 or $error['chapo']==1){
         
-        echo $twig->render('newArticle.twig', array(data=>$error)); // WPCS: XSS OK
+        echo $twig->render('newArticle.twig', array('data'=>$error)); // WPCS: XSS OK
         
     }else{
     
@@ -72,7 +75,7 @@ function addarticle($namearticle, $categorie, $content, $chapo, $auteur, $twig)
         } else {
         }
         
-        $manager = new ArticleManager();
+        $manager = new ManagerArticle();
 
         $manager->addArticle($article);
         
@@ -84,7 +87,7 @@ function addarticle($namearticle, $categorie, $content, $chapo, $auteur, $twig)
 
 function getListArticle($twig)
 {
-    $listeArticle = new ArticleManager();
+    $listeArticle = new ManagerArticle();
     
     $data= $listeArticle->getListArticle();
         
@@ -92,12 +95,12 @@ function getListArticle($twig)
  
     
     
-    echo   $twig->render('article.twig', array(data =>$data));  // WPCS: XSS OK
+    echo   $twig->render('article.twig', array('data' =>$data));  // WPCS: XSS OK
 }
 
 function viewArticle($twig, $idarticle)
 {
-    $dataArticle = new ArticleManager();
+    $dataArticle = new ManagerArticle();
     
     $data=$dataArticle->get($idarticle);
     
@@ -115,7 +118,7 @@ function viewArticle($twig, $idarticle)
 
 function dropArticle($idarticle, $redirection)
 {
-    $drop = new ArticleManager();
+    $drop = new ManagerArticle();
     $requete = $drop->delete($idarticle);
 
     if ($redirection=='adminpost') {
@@ -149,7 +152,7 @@ function updateArticle($namearticle, $categorie, $content, $chapo, $auteur, $ida
     
     $article->checkDirphoto($_FILE,$idarticle);
     
-    $uparticle= new ArticleManager();
+    $uparticle= new ManagerArticle();
     
     
     $uparticle->update($article);
@@ -159,7 +162,7 @@ function updateArticle($namearticle, $categorie, $content, $chapo, $auteur, $ida
 
 function viewModifyArticle($twig, $id)
 {
-    $dataArticle = new ArticleManager();
+    $dataArticle = new ManagerArticle();
     
     $data=$dataArticle->get($id);
     
@@ -167,7 +170,7 @@ function viewModifyArticle($twig, $id)
     
     
     
-    echo $twig->render('modifyArticle.twig', array(data=>$data));   // WPCS: XSS OK
+    echo $twig->render('modifyArticle.twig', array('data'=>$data));   // WPCS: XSS OK
 }
 
 function addinscription($name, $surename, $pseudo, $mail, $mdp)
@@ -293,7 +296,7 @@ function modifyCommentaire($twig, $idCommentaire, $idarticle)
     $modifcommentaire = $requete->get($idCommentaire);
     
      
-    $dataArticle = new ArticleManager();
+    $dataArticle = new ManagerArticle();
     
     $data=$dataArticle->get($idarticle);
     
@@ -304,9 +307,9 @@ function modifyCommentaire($twig, $idCommentaire, $idarticle)
     
        
     echo $twig->render('viewarticleModifyCommentaire.twig', array(  // WPCS: XSS OK
-        data=>$data,
-        commentaire=>$q,
-        modifCommentaire=>$modifcommentaire
+        'data'=>$data,
+        'commentaire'=>$q,
+        'modifCommentaire'=>$modifcommentaire
     ));
 }
 
@@ -407,13 +410,7 @@ function mailcontact ($contenu){
    // $mail->addAddress('nas.s@hotmail.fr');               // Name is optional
     //$mail->addReplyTo('jalile59@free.fr', 'Information');
     //$mail->addCC('');
-    //$mail->addBCC('');
 
-    //Attachmentsc
-    //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-
-    //Content
     $mail->CharSet = 'UTF-8';
     $mail->isHTML(true);                                  // Set email format to HTML
     $mail->Subject = 'BlogJalile';
@@ -437,18 +434,18 @@ function adminCom($twig){
     
 //    die(var_dump($data));
     
-    echo $twig->render('listingCommentary.twig',array(data=>$data)); // WPCS: XSS OK
+    echo $twig->render('listingCommentary.twig',array('data'=>$data)); // WPCS: XSS OK
     
 }
 
 function adminPost($twig){
     
-    $post = new ArticleManager();
+    $post = new ManagerArticle();
     
     $data = $post->getListArticle();
     
 //    die(var_dump($data));
     
-    echo $twig->render('listingPost.twig', array(data=>$data)); // WPCS: XSS OK
+    echo $twig->render('listingPost.twig', array('data'=>$data)); // WPCS: XSS OK
     
 }

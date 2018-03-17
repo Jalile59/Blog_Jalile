@@ -6,13 +6,13 @@
  * and open the template in the editor.
  */
 
-class ManagerUser
+class ManagerUser extends ManagerConnect
 {
     private $_db;
     
     public function __construct()
     {
-        $this->setDb($bdd);
+        $this->_db = parent::__construct();
     }
     
     public function add(User $user)
