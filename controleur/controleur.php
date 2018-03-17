@@ -19,12 +19,13 @@ function callHome($twig){
 
 function callInscription($twig)
 {   
-    $nom = 'null';
+       
+    $nom = $_SESSION['Nom'] ?? 'Null';
     
-    $nom =$_SESSION['Nom'];
-    
-    if ($nom) {
-        echo $twig->render('home.twig'); // WPCS: XSS OK
+    if ($nom != 'Null') {
+        
+        callHome($twig);
+        
     } else {
         echo $twig->render('inscription.twig'); // WPCS: XSS OK
     }
@@ -32,10 +33,10 @@ function callInscription($twig)
 
 function callConnect($twig)
 {
-    $nom =$_SESSION['Nom'];
+    $nom =$_SESSION['Nom'] ?? 'Null';
     
-    if ($nom) {
-        echo $twig->render('home.twig');    // WPCS: XSS OK
+    if ($nom != 'Null') {
+        callHome($twig);
     } else {
         echo $twig->render('connection.twig');  // WPCS: XSS OK
     }
