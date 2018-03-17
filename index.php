@@ -53,7 +53,7 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action']=='Inscription') {
         callInscription($twig);
     } elseif ($_GET['action']=='AddInscription') {
-        $addinscrip = addinscription(htmlspecialchars($_POST['Name']),htmlspecialchars($_POST['Surename']), htmlspecialchars($_POST['Pseudo']), htmlspecialchars($_POST['Mail']), htmlspecialchars($_POST['Psw']));
+        $addinscrip = addinscription(htmlspecialchars($_POST['Name']),htmlspecialchars($_POST['Surename']), htmlspecialchars($_POST['Pseudo']), htmlspecialchars($_POST['Mail']), htmlspecialchars($_POST['Psw']), $twig);
     } elseif ($_GET['action']=='connect') {
         callConnect($twig);
     } elseif ($_GET['action']=='login') {

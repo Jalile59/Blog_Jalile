@@ -156,4 +156,52 @@ class ManagerUser extends ManagerConnect
             return false;
         }
     }
+    
+    public function checkemailexist($mail)
+    {
+        $req = $this->_db->prepare('SELECT COUNT(*) FROM `user` WHERE EmailUser =:Mail ');
+        
+        $req->bindValue(':Mail', $mail);
+        
+        $req->execute();
+        
+        $data = $req->fetch();
+//       var_dump($mail);
+//   die(var_dump($data[0]));
+//        
+        
+        if ($data[0] == 1){
+            
+            return 1;
+            
+        }else{
+            
+            return 0;
+        }
+        
+    }
+    
+        public function checkpseudolexist($pseudo)
+    {
+        $req = $this->_db->prepare('SELECT COUNT(*) FROM `user` WHERE Pseudo =:pseudo ');
+        
+        $req->bindValue(':pseudo', $pseudo);
+        
+        $req->execute();
+        
+        $data = $req->fetch();
+//       var_dump($mail);
+//   die(var_dump($data[0]));
+//        
+        
+        if ($data[0] == 1){
+            
+            return 1;
+            
+        }else{
+            
+            return 0;
+        }
+        
+    }
 }

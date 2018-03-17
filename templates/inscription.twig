@@ -17,46 +17,40 @@
         <form method="POST" action="index.php?action=AddInscription" enctype="multipart/form-data">
             <div class="form-row">
                 <div class="col-md-6 mb-3">
-                  <label for="validationServer01">Nom</label>
-                  <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Nom" name="Name" value="" required>
-                  <div class="valid-feedback">
-                      
-                  </div>
+                  <label for="validationServer01">Nom</label>{% if data.name == 1 %}<a class="errorinput"> Veillez rentrer un Nom !</a>{% else %}{% endif %}
+                  <input type="text" class="form-control is-valid" id="validationServer01" placeholder="Nom" name="Name" value="">
+                  
                 </div>
                 <div class="col-md-6 mb-3">
-                  <label for="validationServer01">Prenom</label>
-                  <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Prenom" name="Surename" value="" required>
-                  <div class="valid-feedback">
+                  <label for="validationServer01">Prenom</label> {% if data.surename == 1 %}<a class="errorinput"> Veillez rentrer un Prénom !</a>{% else %}{% endif %}
+                  <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Prenom" name="Surename" value="" >
 
-                  </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-6 mb-3">
-                  <label for="validationServer01">Pseudo</label>
-                  <input type="text" class="form-control is-valid" id="validationServer03" placeholder="Pseudo" name="Pseudo" value="" required>
-                  <div class="valid-feedback">
+                  <label for="validationServer01">Pseudo</label> {% if data.pseudo == 1 %}<a class="errorinput"> Veillez rentrer un Pseudo !</a>{% else %}{% endif %}{% if data.existpseudo == 1 %}<a class="errorinput"> Ce pseudo exite déja !</a>{% else %}{% endif %}
+                  <input type="text" class="form-control is-valid" id="validationServer03" placeholder="Pseudo" name="Pseudo" value="" >
 
-                  </div>
                 </div>
                 <div class="col-md-6 mb-3">
-                  <label for="validationServer01">Email</label>
-                  <input type="email" class="form-control is-valid" id="validationServer04" placeholder="Email" name="Mail" value="" required>
-                  <div class="valid-feedback">
+                    <label for="validationServer01">Email</label> {% if data.mail == 1 %}<a class="errorinput"> Veillez rentrer un Mail !</a>{% endif %}{% if data.existmail == 1 %}<a class="errorinput"> Cette adresse existe déja</a>{% endif %}
+                  <input type="email" class="form-control is-valid" id="validationServer04" placeholder="Email" name="Mail" value="" >
 
-                  </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-12 mb-3">
-                  <label for="validationServer01">Mot de passe</label>
+                  <label for="validationServer01">Mot de passe</label> 
                   <input type="text" class="form-control is-valid" id="validationServer03" placeholder="Mot de passe" name="Psw" value="" required>
-                  <div class="valid-feedback">
+                  <div  class="col-md-6 mb-3 valid-feedback">
 
                   </div>
                 </div>
             </div>
-          <button style="margin-top: 15px" class="btn btn-primary" type="submit">Valider</button>
+            <div class="col-md-12 mb-3">
+                <button style="margin-top: 15px" class="btn btn-primary" type="submit">Valider</button>
+            </div>
         </form>
     </div>
 </div>    

@@ -174,7 +174,7 @@ function viewModifyArticle($twig, $id)
     echo $twig->render('modifyArticle.twig', array('data'=>$data));   // WPCS: XSS OK
 }
 
-function addinscription($name, $surename, $pseudo, $mail, $mdp)
+function addinscription($name, $surename, $pseudo, $mail, $mdp, $twig)
 {   
     $data = [
       'NameUser' => $name,
@@ -184,6 +184,18 @@ function addinscription($name, $surename, $pseudo, $mail, $mdp)
       'MdpUser' => $mdp,
     ];
     
+    
+    $error = checkformaddinscription($name, $surename, $pseudo, $mail);
+    
+//   die(var_dump($error['existmail']));
+    
+
+    if($error['name']== 1 or $error['surename']== 1 or $error['pseudo']== 1 or $error['mail']== 1 or $error['existmail']== 1 or $error['existpseudo']==1){
+        
+        echo $twig->render('inscription.twig',array('data'=>$error));
+        
+    }else{
+    
     $inscription = new User($data);
         
   
@@ -191,7 +203,9 @@ function addinscription($name, $surename, $pseudo, $mail, $mdp)
     $addinscription->add($inscription);
  
     header('Location:index.php?action=home');
-
+   
+    
+    }
 }
 
 function login($email, $mdp, $twig)
@@ -199,7 +213,7 @@ function login($email, $mdp, $twig)
     
     $error = checkfromlogin($email, $mdp);
     
-    if ($error['mdp'] == 1 or $error['mdp'] == 1 ){
+    if ($error['mdp'] == 1 or $error['mdp'] == 1){
         
         echo $twig->render('connection.twig', array('data'=> $error));  // WPCS: XSS OK
 
@@ -343,6 +357,53 @@ function checkfromlogin($mail, $mdp)
     
     
     return $error;
+}
+
+function checkformaddinscription ($name, $surename, $pseudo, $mail){
+    
+    
+    if (empty($name)){
+        
+        $error['name'] = 1;
+    }else{
+        
+        $error['name'] = 0;
+    }
+    
+    if (empty($surename)){
+        
+        $error['surename'] = 1;
+    }else{
+        
+        $error['surename'] = 0;
+    }
+    
+    if (empty($pseudo)){
+        
+        $error['pseudo'] = 1;
+    }else{
+        
+        $error['pseudo'] = 0;
+    }
+    
+    if (empty($mail)){
+        
+        $error['mail'] = 1;
+    }else{
+        
+        $error['mail'] = 0;
+    }
+    
+    $checkexistmail = new ManagerUser(); 
+    $error['existmail'] = $checkexistmail->checkemailexist($mail); 
+    
+    $checkpseudoexist = new ManagerUser();
+    
+    $error['existpseudo']= $checkpseudoexist->checkpseudolexist($pseudo);
+    
+
+    return $error;
+    
 }
 
 function checkformArticle($namearticle, $content, $chapo, $auteur){
