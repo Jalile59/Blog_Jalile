@@ -33,9 +33,9 @@
                                         <td>{{ data.CreateDate }}</td>
                                                 
                                         <td class="td-actions">
-                                        {% if data.Valide %}{% else %}<a href="index.php?action=valideCommentaire&idarticle={{data.idArticle}}&idCommentaire={{ data.idCommentaire}}&redirection=listingcom"><img src="../public/img/valider.png"/></a>{% endif %}
-                                             <a href="index.php?action=modifyCommentaire&idarticle={{data.idArticle}}&idCommentaire={{ commentaire.idCommentaire}}&param=#comment"><img src="../public/img/bouton-modifier_318-77528.png"/></a>
-                                             <a href="index.php?action=suppCommentaire&idCommentaire={{ data.idCommentaire}}&idarticle={{data.idArticle}}&redirection=listingcom"><img src="../public/img/supprimer.png"/></a></a>
+                                        {% if data.Valide %}{% else %}<a href="index.php?action=valideCommentaire&idarticle={{data.idArticle}}&idCommentaire={{ data.idCommentaire}}&redirection=listingcom"><img src="./public/img/valider.png"/></a>{% endif %}
+                                             <a href="index.php?action=modifyCommentaire&idarticle={{data.idArticle}}&idCommentaire={{ commentaire.idCommentaire}}&param=#comment"><img src="./public/img/bouton-modifier_318-77528.png"/></a>
+                                             <a href="index.php?action=suppCommentaire&idCommentaire={{ data.idCommentaire}}&idarticle={{data.idArticle}}&redirection=listingcom"><img src="./public/img/supprimer.png"/></a></a>
                                         </td>
                                 </tr>
                             {% endfor %}

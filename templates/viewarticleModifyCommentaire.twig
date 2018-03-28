@@ -13,7 +13,7 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <div class="modal-body" >
                     {% for data in data %}
-                        <h2 style="text-align: center">{{ data.NameArticle }} {% if session.Id == data.user_iduser or session.Statut == 'Admin' %} <a href="index.php?action=ViewModify&Articleid={{ data.idArticle}}"><img src="../public/img/bouton-modifier_318-77528.png"/></a><a href="index.php?action=dropArticle&id={{ data.idArticle}}"><img src="../public/img/supprimer.png"/></h2></a> {% else %}</h2>{% endif %}
+                        <h2 style="text-align: center">{{ data.NameArticle }} {% if session.Id == data.user_iduser or session.Statut == 'Admin' %} <a href="index.php?action=ViewModify&Articleid={{ data.idArticle}}"><img src="./public/img/bouton-modifier_318-77528.png"/></a><a href="index.php?action=dropArticle&id={{ data.idArticle}}"><img src="./public/img/supprimer.png"/></h2></a> {% else %}</h2>{% endif %}
                     <hr class="star-primary">
                     <img src=".{{data.Dirphoto}}" class="img-responsive img-centered" alt="">
                     <p style="text-align: justify">{{data.Content|raw}} </p>
@@ -63,20 +63,20 @@
                                 <p>{{commentaire.CreateDate}}</p>
                                 {% if session.Statut == 'Admin' and commentaire.Valide == '1' %}
                         <div style="position: absolute">
-                            <img src="../public/img/approuve.png"/>
+                            <img src="./public/img/approuve.png"/>
                         </div>
                         {% else %}
                         {% endif %}
                             </div>
                             <div class="col-lg-6" style="text-align: right">
-                                <a>{{ data.NameArticle }}</a> {% if session.Id == '1' %} <a href="index.php?action=valideCommentaire&idarticle={{data.idArticle}}&idCommentaire={{ commentaire.idCommentaire}}"><img src="../public/img/valider.png"/></a>{% else %}{% endif %}{% if session.Id == data.user_iduser or session.Id == '1' %}<a href="index.php?action=modifyCommentaire&idarticle={{data.idArticle}}&idCommentaire={{ commentaire.idCommentaire}}&param=#comment"><img src="../public/img/bouton-modifier_318-77528.png"/></a><a href="index.php?action=suppCommentaire&idCommentaire={{ commentaire.idCommentaire}}&idarticle={{data.idArticle}}"><img src="../public/img/supprimer.png"/></a></a>{% else%} {% endif%}
+                                <a>{{ data.NameArticle }}</a> {% if session.Id == '1' %} <a href="index.php?action=valideCommentaire&idarticle={{data.idArticle}}&idCommentaire={{ commentaire.idCommentaire}}"><img src="./public/img/valider.png"/></a>{% else %}{% endif %}{% if session.Id == data.user_iduser or session.Id == '1' %}<a href="index.php?action=modifyCommentaire&idarticle={{data.idArticle}}&idCommentaire={{ commentaire.idCommentaire}}&param=#comment"><img src="./public/img/bouton-modifier_318-77528.png"/></a><a href="index.php?action=suppCommentaire&idCommentaire={{ commentaire.idCommentaire}}&idarticle={{data.idArticle}}"><img src="./public/img/supprimer.png"/></a></a>{% else%} {% endif%}
 
                             </div>
                         </div>
                         <div class="row">
                             
                             <div id="photoutilisateur" class="col-lg-2">
-                                <img src="../public/img/utilisateur.png"><p> jalile</p>
+                                <img src="./public/img/utilisateur.png"><p> jalile</p>
                             </div>
 
                             <div id="txtcommentaire" class="col-lg-9">
