@@ -113,7 +113,7 @@ function viewArticle($twig, $idarticle)
     
     echo $twig->render('viewarticle.twig', 
             array('data'=>$data,   // WPCS: XSS OK                 
-            'commentaire'=>$q
+            'commentaire'=>$q       // WPCS: XSS OK     
             ));
 }
 
