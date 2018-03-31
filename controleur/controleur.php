@@ -26,9 +26,9 @@ function callInscription($twig)
         
         callHome($twig);
         
-    } else {
+    } 
         echo $twig->render('inscription.twig'); // WPCS: XSS OK
-    }
+    
 }
 
 function callConnect($twig)
