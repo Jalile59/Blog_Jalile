@@ -141,7 +141,8 @@ class Article
     {
         $extention = new SplFileInfo($_FILES['photoAticle']['name']);
     
-    
+       
+        
         if ($_FILES ['photoAticle']['error']== 0) {
             if (mb_strtolower($extention->getExtension()) =='png'or mb_strtolower($extention->getExtension()) == 'jpg') {
                 if ($_FILES ['photoAticle']['size']<= 2000000) { //valeur en octets
@@ -159,7 +160,7 @@ class Article
             }
         } else {
             
-            $dirphoto = new ArticleManager();
+            $dirphoto = new ManagerArticle();
             $data = $dirphoto->getDirphotoByIdarticle($idarticle);
             
 //            die(var_dump($data));

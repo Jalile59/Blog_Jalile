@@ -46,7 +46,7 @@ function callConnect($twig)
 
 function addarticle($namearticle, $categorie, $content, $chapo, $auteur, $twig)
 {   
-    $error = checkformArticle($namearticle, $content, $chapo, $auteur);
+    $error = checkformArticle($namearticle, $content, $chapo, $auteur, $categorie);
    
     if ($error['namearticle']== 1 or $error['content']== 1 or $error['auteur']==1 or $error['chapo']==1){
         
@@ -70,11 +70,11 @@ function addarticle($namearticle, $categorie, $content, $chapo, $auteur, $twig)
         
         $idarticle ='0';
         
-        $CheckFile = $article->checkDirphoto($_FILE,$idarticle);
         
-        if ($CheckFile) {
-        } else {
-        }
+        
+        $CheckFile = $article->checkDirphoto($_FILES,$idarticle);
+        
+
         
         $manager = new ManagerArticle();
 
@@ -406,7 +406,7 @@ function checkformaddinscription ($name, $surename, $pseudo, $mail){
     
 }
 
-function checkformArticle($namearticle, $content, $chapo, $auteur){
+function checkformArticle($namearticle, $content, $chapo, $auteur, $categorie){
     
     
     if(empty($namearticle)){
@@ -432,6 +432,13 @@ function checkformArticle($namearticle, $content, $chapo, $auteur){
     }else{
         $error ['auteur'] = 0;
     }
+    
+        if(empty($categorie)){
+        $error ['categorie'] = 1;
+    }else{
+        $error ['categorie'] = 0;
+    }
+    
     return $error;
 }
 
