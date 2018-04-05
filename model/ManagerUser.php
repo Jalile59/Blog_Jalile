@@ -29,7 +29,7 @@ class ManagerUser extends ManagerConnect
         $req->bindValue(':Statut', $user->getStatut());
         
         
-        return $req->execute();
+        return $data= $req->execute();
     }
     
     public function delete($user)

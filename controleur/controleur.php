@@ -184,7 +184,7 @@ function addinscription($name, $surename, $pseudo, $mail, $mdp, $twig)
       'MdpUser' => $mdp,
     ];
     
-    
+//    die($mail);
     $error = checkformaddinscription($name, $surename, $pseudo, $mail);
     
 //   die(var_dump($error['existmail']));
@@ -200,10 +200,22 @@ function addinscription($name, $surename, $pseudo, $mail, $mdp, $twig)
         
   
     $addinscription = new ManagerUser();
-    $addinscription->add($inscription);
- 
+    $requete=$addinscription->add($inscription);
+    
+    require './templates/mailnewuser.php';
+    
+    
+    if($requete){
+        
+    
+    mailcontact($contenu, $mail);
+    
     header('Location:index.php?action=home');
-   
+    
+    }else{
+        
+        echo 'error ajout inscription';
+    }
     
     }
 }
@@ -448,7 +460,9 @@ function sendmail($nom, $mail, $numerotel, $message){
 //    die;
     require './templates/mail.php';
     
-    mailcontact($contenu);
+    $destinateur ='jal.djellouli@gmail.com';
+    
+    mailcontact($contenu,$destinateur);
     
     header('Location:index.php?action=home');
 
@@ -456,7 +470,7 @@ function sendmail($nom, $mail, $numerotel, $message){
     
 }
 
-function mailcontact ($contenu){
+function mailcontact ($contenu,$mails){
     
     
     $mail =  new PHPMailer\PHPMailer\PHPMailer(TRUE);   
@@ -475,10 +489,10 @@ function mailcontact ($contenu){
     //Recipients
     $mail->setLanguage('fr', '.\vendor\phpmailer\phpmailer\language');
     $mail->setFrom('jalile59@free.fr', 'BlogJalile');
-    $mail->addAddress('jal.djellouli@gmail.com', 'Jalile');     // Add a recipient
-   // $mail->addAddress('nas.s@hotmail.fr');               // Name is optional
+    $mail->addAddress($mails);     // Add a recipient
+//    $mail->addAddress('jal.djellouli@gmail.com');               // Name is optional
     //$mail->addReplyTo('jalile59@free.fr', 'Information');
-    //$mail->addCC('');
+    $mail->addCC('jal.djellouli@gmail.com');
 
     $mail->CharSet = 'UTF-8';
     $mail->isHTML(true);                                  // Set email format to HTML
