@@ -499,9 +499,9 @@ function mailcontact ($contenu,$mails){
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
-    echo 'Message has been sent';
+    return TRUE;
 } catch (Exception $e) {
-    echo 'Message could not be sent.';
+    return FALSE;
 }
 
 }
@@ -525,5 +525,37 @@ function adminPost($twig){
     
     
     echo $twig->render('listingPost.twig', array('data'=>$data)); // WPCS: XSS OK
+    
+}
+
+function lostpassword($mail, $twig){
+    
+    
+    
+    
+    
+    
+    $user = new ManagerUser();
+    
+    $exitmail = $user->checkemailexist($mail);
+    
+    if ($exitmail){
+        
+    $data = $user->getRowbyMail($mail);
+    
+    $password = $data->getMdpUser();
+    
+     require './templates/lostpassword.php';
+     
+     mailcontact($contenu, $mail); 
+     
+     echo $twig->render('home.twig'); 
+     
+    }else{
+        
+      echo  $twig->render('resetpassword.twig', array('data'=>1));
+    }
+    
+        
     
 }

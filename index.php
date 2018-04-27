@@ -29,11 +29,9 @@ $twig = new Twig_Environment($loader, [
 
 $twig->addExtension(new Twig_Extension_Debug);
 
-//die(var_dump($_SESSION));
 
 $twig->addGlobal('session', $_SESSION);
 
-//$container->loadFromExtension('twig', array('global'=>$_SESSION));
 
 
 
@@ -44,8 +42,6 @@ if (isset($_GET['action'])) {
     } elseif ($_GET['action'] == 'ViewAddarticle') {
         echo $twig->render('newArticle.twig'); // WPCS: XSS OK
     } elseif ($_GET['action']=='AddArticle') {
-//        echo '<pre>';
-//        die(var_dump($_POST));
         $add = addarticle($_POST['inputArticleTitre'], $_POST['inputArticleGatégorie'], $_POST['inputArticleContent'], $_POST['inputChapo'], $_POST['inputArticleAuteur'], $twig);
     } elseif ($_GET['action']=='viewarticle') {
         viewArticle($twig, htmlspecialchars($_GET['idarticle']));
@@ -86,6 +82,10 @@ if (isset($_GET['action'])) {
         $data = adminCom($twig);
     }elseif ($_GET['action']=='listingPost') {
         adminPost($twig);
+    }elseif($_GET['action']=='lostpassword'){
+            echo $twig->render('resetpassword.twig'); // WPCS: XSS OK      
+    }elseif($_GET['action']=='resetpassword'){
+        lostpassword($_POST['mail'], $twig);
     }
     
 } else {
