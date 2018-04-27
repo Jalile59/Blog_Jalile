@@ -85,7 +85,9 @@ if (isset($_GET['action'])) {
     }elseif($_GET['action']=='lostpassword'){
             echo $twig->render('resetpassword.twig'); // WPCS: XSS OK      
     }elseif($_GET['action']=='resetpassword'){
-        lostpassword($_POST['mail'], $twig);
+        
+        $_POST['mail'] = $mail;
+        lostpassword($mail, $twig);
     }
     
 } else {

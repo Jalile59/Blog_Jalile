@@ -549,11 +549,11 @@ function lostpassword($mail, $twig){
      
      mailcontact($contenu, $mail); 
      
-     echo $twig->render('home.twig'); 
+     echo $twig->render('home.twig');  // WPCS: XSS OK
      
     }else{
         
-      echo  $twig->render('resetpassword.twig', array('data'=>1));
+      echo  $twig->render('resetpassword.twig', array('data'=>1)); // WPCS: XSS OK
     }
     
         
