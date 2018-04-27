@@ -93,7 +93,7 @@ function getListArticle($twig)
     $data= $listeArticle->getListArticle();
         
     
- 
+// die(var_dump($data));
     
     
     echo   $twig->render('article.twig', array('data' =>$data));  // WPCS: XSS OK
@@ -184,10 +184,8 @@ function addinscription($name, $surename, $pseudo, $mail, $mdp, $twig)
       'MdpUser' => $mdp,
     ];
     
-//    die($mail);
     $error = checkformaddinscription($name, $surename, $pseudo, $mail);
     
-//   die(var_dump($error['existmail']));
     
 
     if($error['name']== 1 or $error['surename']== 1 or $error['pseudo']== 1 or $error['mail']== 1 or $error['existmail']== 1 or $error['existpseudo']==1){
@@ -456,13 +454,13 @@ function checkformArticle($namearticle, $content, $chapo, $auteur, $categorie){
 
 function sendmail($nom, $mail, $numerotel, $message){
     
-//    echo $nom, $mail, $numerotel, $message;
-//    die;
+
     require './templates/mail.php';
     
     $destinateur ='jal.djellouli@gmail.com';
     
     mailcontact($contenu,$destinateur);
+    
     
     header('Location:index.php?action=home');
 
@@ -504,7 +502,6 @@ function mailcontact ($contenu,$mails){
     echo 'Message has been sent';
 } catch (Exception $e) {
     echo 'Message could not be sent.';
-   // echo 'Mailer Error: ' . $mail->ErrorInfo;
 }
 
 }
@@ -515,7 +512,6 @@ function adminCom($twig){
     
     $data = $commentaire->getallcommentaire();
     
-//    die(var_dump($data));
     
     echo $twig->render('listingCommentary.twig',array('data'=>$data)); // WPCS: XSS OK
     
@@ -527,7 +523,6 @@ function adminPost($twig){
     
     $data = $post->getListArticle();
     
-//    die(var_dump($data));
     
     echo $twig->render('listingPost.twig', array('data'=>$data)); // WPCS: XSS OK
     

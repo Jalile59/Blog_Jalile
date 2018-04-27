@@ -1,6 +1,7 @@
 <?php 
 // Definition du path absolu
- session_start();
+
+session_start();
 define("ABSOLUTE_PATH", dirname(__FILE__));
 
 require ABSOLUTE_PATH. '/vendor/autoload.php';
@@ -33,6 +34,8 @@ $twig->addExtension(new Twig_Extension_Debug);
 $twig->addGlobal('session', $_SESSION);
 
 //$container->loadFromExtension('twig', array('global'=>$_SESSION));
+
+
 
 
 if (isset($_GET['action'])) {
