@@ -1,7 +1,8 @@
 09/04/2018
 
+link: 82.64.29.128:84
 
-prérequis: 
+prÃ©requis: 
 	-->php 7.
 	-->composer.
 	-->mysql.
